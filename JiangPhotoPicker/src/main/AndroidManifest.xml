@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jiang.photo.picker">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application>
+        <activity
+            android:name=".activity.SelectImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PhotoActivityTheme" />
+        <activity
+            android:name=".activity.PreviewImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PhotoActivityTheme" />
+        <activity
+            android:name=".activity.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PhotoActivityTheme" />
+        <activity
+            android:name=".activity.SelectPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PhotoActivityTheme" />
+
+        <provider
+            android:name=".utils.ImagePickerProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/photo_paths" />
+        </provider>
+    </application>
+</manifest>

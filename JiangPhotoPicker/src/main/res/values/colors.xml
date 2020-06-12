@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="photo_window">#F5F5F5</color>
+    <color name="photo_default">#333333</color>
+    <color name="photo_default_gray">#e9e9e9</color>
+    <color name="photo_white">#FFFFFF</color>
+
+    <color name="crop_overlay">#AA1C1C1C</color>
+    <color name="crop_divider">#333333</color>
+    <color name="crop_windowBackground">#1C1C1C</color>
+</resources>

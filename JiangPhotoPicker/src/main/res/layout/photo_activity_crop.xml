@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/crop_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/crop_windowBackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/crop_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/photo_default"
+        android:orientation="vertical">
+
+        <jiang.photo.picker.utils.statusbar.PhotoStatusView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/photo_toolbar">
+
+            <RelativeLayout
+                android:id="@+id/crop_back_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <ImageView
+                    android:id="@+id/crop_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/photo_back_white" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/crop_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="裁剪"
+                android:textColor="#ffffff"
+                android:textSize="16dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <jiang.photo.picker.widget.CropImageView
+            android:id="@+id/cropImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            custom:scv_crop_mode="fit_image"
+            custom:scv_frame_color="#ffffff"
+            custom:scv_frame_stroke_weight="1dp"
+            custom:scv_guide_color="#ffffff"
+            custom:scv_guide_show_mode="show_always"
+            custom:scv_guide_stroke_weight="1dp"
+            custom:scv_handle_color="#ffffff"
+            custom:scv_handle_show_mode="show_always"
+            custom:scv_handle_size="8dp"
+            custom:scv_min_frame_size="50dp"
+            custom:scv_overlay_color="@color/crop_overlay"
+            custom:scv_touch_padding="8dp" />
+
+        <jiang.photo.picker.widget.PhotoProgressBar
+            android:id="@+id/crop_progress"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/photo_default"
+        android:id="@+id/crop_bottom"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/crop_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:text="取消"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/crop_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:text="确定"
+            android:textSize="14dp" />
+    </RelativeLayout>
+</LinearLayout>

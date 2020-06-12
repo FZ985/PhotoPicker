@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PhotoActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/photo_default</item>
+        <item name="colorPrimaryDark">@color/photo_default</item>
+        <item name="colorAccent">@color/photo_default</item>
+        <item name="android:windowBackground">@color/photo_window</item>
+    </style>
+</resources>
