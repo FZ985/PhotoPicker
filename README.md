@@ -11,7 +11,9 @@
 可设置裁剪页面的样式
 
 无任何设置使用：
-  Photo.with().into(this, new SelectImageListener() {
+  
+  
+       Photo.with().into(this, new SelectImageListener() {
             @Override
             public void onSelectImages(ArrayList<String> images) {
                //返回结果  images
@@ -24,9 +26,10 @@
         
 更多配置可参考MainActivity
 例：
-   Photo photo = Photo.with();
+        
+        Photo photo = Photo.with();
         //先重置一下
-        photo.reset();
+              photo.reset();
 
         //选择模式
         if (rb1.isChecked()) {
