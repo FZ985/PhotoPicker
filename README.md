@@ -1,17 +1,18 @@
 # PhotoPicker
 图片选择器
 
-单选、多选
-是否启用相机
-是否裁剪
-可设置图片显示列数
-可设置列表页面的样式
-可设置最多选择数量
-可设置多选预览页面的样式
-可设置裁剪页面的样式
-
-无任何设置使用：
-  Photo.with().into(this, new SelectImageListener() {
+  单选、多选   
+  是否启用相机是否裁剪   
+  可设置图片显示列数   
+  可设置列表页面的样式   
+  可设置最多选择数量    
+  可设置多选预览页面的样式    
+  可设置裁剪页面的样式    
+  
+  无任何设置使用：
+  
+  
+       Photo.with().into(this, new SelectImageListener() {
             @Override
             public void onSelectImages(ArrayList<String> images) {
                //返回结果  images
@@ -22,11 +23,12 @@
             }
         });
         
-更多配置可参考MainActivity
-例：
-   Photo photo = Photo.with();
+  更多配置可参考MainActivity
+  例：
+        
+        Photo photo = Photo.with();
         //先重置一下
-        photo.reset();
+              photo.reset();
 
         //选择模式
         if (rb1.isChecked()) {
