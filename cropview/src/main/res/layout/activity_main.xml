@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="crop"
+        android:text="crop" />
+
+    <com.cropview.CropImageView
+        android:id="@+id/cropImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        app:scv_crop_mode="fit_image"
+        app:scv_frame_color="#ffffff"
+        app:scv_frame_stroke_weight="1dp"
+        app:scv_guide_color="#ffffff"
+        app:scv_guide_show_mode="show_always"
+        app:scv_guide_stroke_weight="1dp"
+        app:scv_handle_color="#ffffff"
+        app:scv_handle_show_mode="show_always"
+        app:scv_handle_size="8dp"
+        app:scv_min_frame_size="50dp"
+        app:scv_overlay_color="#AA1C1C1C"
+        app:scv_touch_padding="8dp" />
+
+</LinearLayout>

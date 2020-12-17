@@ -1,2 +1,3 @@
+include ':cropview'
 rootProject.name='PhotoPicker'
 include ':app', ':JiangPhotoPicker'
