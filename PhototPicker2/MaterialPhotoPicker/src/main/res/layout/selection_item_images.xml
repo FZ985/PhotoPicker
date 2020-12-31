@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:viewBindingIgnore="true">
+
+    <ImageView
+        android:id="@+id/item_selection_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/item_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?selection.list.item.layerbg"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/item_checkroot"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/item_check"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_video"
+        style="?selection.list.item.videoStyle" />
+</RelativeLayout>

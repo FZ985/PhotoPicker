@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?selection.bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?selection.bottom.height">
+
+        <FrameLayout
+            android:id="@+id/selection_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="?selection.toolbarHeight"
+            android:paddingBottom="?selection.bottom.height" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/selection_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/photo_folder_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?selection.folderlist.bg"
+            android:orientation="vertical"
+            android:paddingTop="?selection.toolbarHeight"
+            android:visibility="gone">
+
+            <ListView
+                android:id="@+id/photo_folderlv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="?selection.folderlist.divider"
+                android:dividerHeight="1px"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/selection_toolbar"
+        style="?selection.toolbar">
+
+        <ImageView
+            android:id="@+id/selection_back"
+            style="?selection.back" />
+
+        <LinearLayout
+            android:id="@+id/selection_folder_ll"
+            style="?selection.folder">
+
+            <TextView
+                android:id="@+id/selection_folder_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="?selection.folder.textColor"
+                android:textSize="?selection.folder.textSize" />
+
+            <ImageView
+                android:id="@+id/selection_folder_arrow"
+                style="?selection.folder.arrow" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/selection_bottom"
+        style="?selection.bottom">
+
+        <TextView
+            android:id="@+id/selection_preview_tv"
+            style="?selection.bottom.preview" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selection_commit"
+            style="?selection.bottom.commit" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    自定义控件样式,样式由外部定义
+-->
+<resources>
+    <!-- toolbar样式   -->
+    <style name="private_selection_toolbar_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?selection.toolbarHeight</item>
+        <item name="cardCornerRadius">0dp</item>
+        <item name="android:background">@color/jmaterial_colorPrimary</item>
+        <item name="android:elevation">5dp</item>
+    </style>
+
+    <!-- 返回按钮样式  黑色样式 -->
+    <style name="private_selection_back_dark_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/bg_material_dark</item>
+        <item name="android:src">@drawable/ic_back_black</item>
+    </style>
+
+    <!-- 返回按钮样式  白色样式 -->
+    <style name="private_selection_back_light_style" parent="private_selection_back_dark_style">
+        <item name="android:background">@drawable/bg_material_light</item>
+        <item name="android:src">@drawable/ic_back_white</item>
+    </style>
+
+    <!-- 选中文件夹样式  -->
+    <style name="private_selection_folder_style">
+        <item name="android:layout_toRightOf">@id/selection_back</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:background">@drawable/shape_selection_folder_default_bg</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingRight">7dp</item>
+        <item name="android:paddingBottom">3dp</item>
+    </style>
+
+    <!-- 顶部文件夹箭头   -->
+    <style name="private_selection_folder_arrow_style">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:src">@drawable/photo_jiantou</item>
+    </style>
+
+    <!--  选择底部布局  -->
+    <style name="private_selection_bottom_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?selection.bottom.height</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:background">@color/jmaterial_white</item>
+    </style>
+
+    <!--  选择底部预览  -->
+    <style name="private_selection_bottom_preview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:text">?selection.bottom.preview.text</item>
+        <item name="android:textColor">@color/selection_preview_textcolor</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--  选择底部确定  -->
+    <style name="Widget.Selection_Commit" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="backgroundTint">@color/selection_preview_textcolor</item>
+        <item name="android:text">确定</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/jmaterial_white</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+</resources>

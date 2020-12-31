@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="?preview.bg"
+    android:fitsSystemWindows="false">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/preview_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
+
+    <LinearLayout
+        android:id="@+id/preview_toolbar_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:background="?preview.titleBarColor"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/preview_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?preview.statusBarColor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?preview.toolbarHeight">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/preview_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
+                android:background="?preview.toolbar.bg"
+                android:elevation="0dp"
+                android:theme="?preview.toolbar.theme"
+                app:navigationIcon="?preview.toolbar.navigationIcon" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/preivew_commit"
+                style="?preview.commit"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/preview_bottom_rl"
+        android:layout_width="match_parent"
+        android:layout_height="?preview.bottomHeight"
+        android:layout_alignParentBottom="true"
+        android:animateLayoutChanges="true"
+        android:background="?preview.bottomHeight.bg">
+
+        <TextView
+            android:id="@+id/preview_nums"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:textColor="?preview.bottom.numTextColor"
+            android:textSize="?preview.bottom.numTextSize" />
+
+        <LinearLayout
+            android:id="@+id/preview_check_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp">
+
+            <ImageView
+                android:id="@+id/preview_checkiv"
+                android:layout_width="22dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="?preview.check.text"
+                android:textColor="?preview.check.textColor"
+                android:textSize="?preview.check.textSize" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

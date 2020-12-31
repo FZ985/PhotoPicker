@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="jmaterial_colorPrimary">#FF6200EE</color>
+    <color name="jmaterial_colorPrimaryDark">#FF3700B3</color>
+    <color name="jcolor_3333333">#333333</color>
+    <color name="jcolor_353535">#353535</color>
+    <color name="jcolor_cdcdcd">#cdcdcd</color>
+    <color name="jmaterial_white">#FFFFFFFF</color>
+    <color name="jmaterial_black">#FF000000</color>
+    <color name="jgrey_600">#ff757575</color>
+    <color name="jgrey_50">#fffafafa</color>
+</resources>
