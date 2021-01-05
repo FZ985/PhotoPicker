@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="private_selection_toolbar_light_style" parent="private_preview_toolbar_style">
+        <item name="android:background">@color/jmaterial_white</item>
+    </style>
+    <style name="private_selection_back_light_style" parent="private_selection_back_style">
+        <item name="android:background">@drawable/bg_material_light</item>
+        <item name="android:src">@drawable/ic_back_white</item>
+    </style>
+</resources>

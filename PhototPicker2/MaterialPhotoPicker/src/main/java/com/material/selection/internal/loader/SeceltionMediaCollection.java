@@ -33,14 +33,14 @@ public class SeceltionMediaCollection implements LoaderManager.LoaderCallbacks<C
 
     public void onCreate(AppCompatActivity activity) {
         mContext = new WeakReference<>(activity);
-        mLoaderManager = LoaderManager.getInstance(activity);
+        mLoaderManager = activity.getSupportLoaderManager();
     }
 
     public void load(LoaderMediaCallback callback) {
         this.mCallback = callback;
         if (mLoaderManager != null) {
             Bundle mediaStoreArgs = new Bundle();
-            mediaStoreArgs.putBoolean("MediaStoreHelper.EXTRA_SHOW_GIF", true);
+            mediaStoreArgs.putBoolean("SHOW_GIF", true);
             mLoaderManager.initLoader(LOADER_ID, mediaStoreArgs, this);
         }
     }
@@ -68,6 +68,7 @@ public class SeceltionMediaCollection implements LoaderManager.LoaderCallbacks<C
         List<Item> allList = new ArrayList<>();
         List<List<Item>> folderList = new ArrayList<>();
         HashMap<String, List<Item>> maps = new HashMap<>();
+        PickerUtils.log("data.moveToNext():" + data.moveToNext());
         while (data.moveToNext()) {
             int fileId = data.getInt(data.getColumnIndex(MediaStore.Files.FileColumns._ID));
             String displayName = data.getString(data.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME));
@@ -101,7 +102,6 @@ public class SeceltionMediaCollection implements LoaderManager.LoaderCallbacks<C
 
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-
     }
 
     public interface LoaderMediaCallback {

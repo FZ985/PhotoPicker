@@ -28,66 +28,39 @@
             android:background="?preview.statusBarColor" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="?preview.toolbarHeight">
+            android:id="@+id/preview_toolbar"
+            style="?preview.toolbar">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/preview_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:animateLayoutChanges="true"
-                android:background="?preview.toolbar.bg"
-                android:elevation="0dp"
-                android:theme="?preview.toolbar.theme"
-                app:navigationIcon="?preview.toolbar.navigationIcon" />
+            <ImageView
+                android:id="@+id/preview_back"
+                style="?preview.back" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/preivew_commit"
-                style="?preview.commit"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
+                style="?preview.commit" />
         </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/preview_bottom_rl"
-        android:layout_width="match_parent"
-        android:layout_height="?preview.bottomHeight"
-        android:layout_alignParentBottom="true"
-        android:animateLayoutChanges="true"
-        android:background="?preview.bottomHeight.bg">
+        style="?preview.bottom"
+        android:animateLayoutChanges="true">
 
         <TextView
             android:id="@+id/preview_nums"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:textColor="?preview.bottom.numTextColor"
-            android:textSize="?preview.bottom.numTextSize" />
+            style="?preview.bottom.numText" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/preview_check_ll"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="15dp">
+            style="?preview.check.root">
 
             <ImageView
                 android:id="@+id/preview_checkiv"
-                android:layout_width="22dp"
-                android:layout_height="22dp" />
+                style="?preview.check.imageSize" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:text="?preview.check.text"
-                android:textColor="?preview.check.textColor"
-                android:textSize="?preview.check.textSize" />
-        </LinearLayout>
+                android:id="@+id/preview_checktv"
+                style="?preview.check.text" />
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

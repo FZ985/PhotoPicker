@@ -13,9 +13,11 @@
         <item name="selection.bg">@color/jgrey_50</item>
         <item name="selection.toolbarHeight">?android:attr/actionBarSize</item>
         <item name="selection.toolbar">@style/private_selection_toolbar_style</item>
-        <item name="selection.back">@style/private_selection_back_light_style</item>
+        <item name="selection.back">@style/private_selection_back_style</item>
         <!-- 空布局  -->
         <item name="selection.emptyView">@layout/selection_emptyview</item>
+        <!--  加载布局 -->
+        <item name="selection.loadingView">@layout/selection_loading</item>
         <!--  顶部文件夹相关属性  -->
         <item name="selection.folder">@style/private_selection_folder_style</item>
         <item name="selection.folder.textSize">17sp</item>
@@ -45,7 +47,8 @@
         <item name="selection.folderlist.allName">图片和视频</item>
         <item name="selection.folderlist.bg">#80000000</item>
         <item name="selection.folderlist.divider">#e4e4e4</item>
-        <item name="selection.folderlist.item.bg">@color/jmaterial_white</item>
+        <item name="selection.folderlist.item.rootbg">@color/jmaterial_white</item>
+        <item name="selection.folderlist.item.bg">@drawable/bg_material_dark</item>
         <item name="selection.folderlist.item.dirNameTextColor">@color/jmaterial_black</item>
         <item name="selection.folderlist.item.dirNameTextSize">14sp</item>
         <item name="selection.folderlist.item.dirNumsTextColor">#95000000</item>
@@ -55,52 +58,60 @@
         <!--  预览界面相关属性      -->
         <item name="preview.status.isDarkFont">false</item>
         <item name="preview.bg">@color/jmaterial_black</item>
-        <item name="preview.titleBarColor">@color/jcolor_3333333</item>
+        <item name="preview.titleBarColor">#00ffffff</item>
         <item name="preview.statusBarColor">@color/jcolor_3333333</item>
         <item name="preview.navigationBarColor">@color/jcolor_3333333</item>
-        <item name="preview.toolbarHeight">?android:attr/actionBarSize</item>
-        <item name="preview.toolbar.bg">#00ffffff</item>
-        <item name="preview.toolbar.theme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar
-        </item>
-        <item name="preview.toolbar.navigationIcon">@drawable/ic_back_material</item>
+        <item name="preview.toolbar">@style/private_preview_toolbar_style</item>
+        <item name="preview.back">@style/private_selection_back_light_style</item>
         <item name="preview.titleBarColorAlpha">-1</item>
         <item name="preview.statusBarColorAlpha">-1</item>
         <item name="preview.toolbarBgAlpha">-1</item>
         <item name="preview.bottomBarColorAlpha">-1</item>
-        <item name="preview.bottomHeight">?android:actionBarSize</item>
-        <item name="preview.bottomHeight.bg">@color/jcolor_3333333</item>
-        <item name="preview.bottom.numTextColor">@color/jmaterial_white</item>
-        <item name="preview.bottom.numTextSize">15sp</item>
         <item name="preview.commit">@style/Widget.Selection_Commit</item>
+        <item name="preview.bottom">@style/private_preview_bottom_style</item>
+        <item name="preview.bottom.numText">@style/private_preview_bottom_numtext</item>
+        <item name="preview.check.root">@style/private_preview_check_root_style</item>
         <item name="preview.check.normal">@drawable/photo_icon_normal</item>
         <item name="preview.check.selected">@drawable/photo_icon_select</item>
-        <item name="preview.check.text">选择</item>
-        <item name="preview.check.textColor">@color/jmaterial_white</item>
-        <item name="preview.check.textSize">15sp</item>
+        <item name="preview.check.imageSize">@style/private_preview_check_imagesize_style</item>
+        <item name="preview.check.text">@style/private_preview_check_text_style</item>
         <item name="preview.playvideo">@drawable/ic_playvideo_white</item>
     </style>
 
     <!-- 亮色主题   -->
     <style name="Selection.Light" parent="Material.Selection.Base">
-        <item name="preview.toolbar.theme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar
-        </item>
+        <item name="colorPrimary">@color/jmaterial_white</item>
+        <item name="colorPrimaryVariant">@color/jmaterial_white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@color/jmaterial_white</item>
+        <item name="selection.status.isDarkFont">true</item>
+        <item name="selection.toolbar">@style/private_selection_toolbar_light_style</item>
+        <item name="selection.back">@style/private_selection_back_dark_style</item>
+        <item name="selection.folder.textColor">@color/jmaterial_black</item>
     </style>
 
     <!-- 黑色主题   -->
     <style name="Selection.Dark" parent="Material.Selection.Base">
-        <item name="preview.toolbar.theme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        <item name="colorPrimary">@color/jcolor_3333333</item>
+        <item name="colorPrimaryVariant">@color/jcolor_3333333</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@color/jcolor_3333333</item>
+        <item name="selection.bg">@color/jmaterial_black</item>
+        <item name="selection.toolbar">@style/private_selection_toolbar_dark_style</item>
+        <item name="selection.back">@style/private_selection_back_light_style</item>
+        <item name="selection.folder">@style/private_selection_folder_dark_style</item>
+        <item name="selection.bottom">@style/private_selection_bottom_dark_style</item>
+        <item name="selection.bottom.preview">@style/private_selection_bottom_preview_dark_style
+        </item>
+        <item name="selection.list.totalTextColor">@color/jmaterial_white</item>
+        <item name="selection.list.camera.bg">@color/jgrey_600</item>
+        <item name="selection.list.item.layerbg">#99ffffff</item>
+        <item name="selection.folderlist.item.rootbg">@color/jcolor_3333333</item>
+        <item name="selection.folderlist.item.bg">@drawable/bg_material_light</item>
+        <item name="selection.folderlist.item.dirNameTextColor">@color/jmaterial_white</item>
+        <item name="selection.folderlist.item.dirNumsTextColor">@color/jcolor_cdcdcd</item>
+        <item name="selection.folderlist.divider">@color/jmaterial_black</item>
+        <item name="selection.emptyView">@layout/selection_emptyview_dark</item>
     </style>
 
-    <style name="internal_listVideo_Style">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:layout_marginLeft">5dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:drawableLeft">@drawable/ic_video</item>
-        <item name="android:drawablePadding">10dp</item>
-        <item name="android:textColor">@color/jmaterial_white</item>
-    </style>
 </resources>

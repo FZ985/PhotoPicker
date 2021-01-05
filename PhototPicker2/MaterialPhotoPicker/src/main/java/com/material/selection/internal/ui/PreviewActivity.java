@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -50,9 +49,6 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         binding = ActivityPreviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.previewToolbar);
-        setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (mSpec.needOrientationRestriction()) {
             setRequestedOrientation(mSpec.orientation);
         }
@@ -67,6 +63,7 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
         typedArray.recycle();
         binding.preivewCommit.setOnClickListener(this);
         binding.previewCheckLl.setOnClickListener(this);
+        binding.previewBack.setOnClickListener(this);
         commitText = binding.preivewCommit.getText().toString();
         adapter = new PreviewAdapter(getSupportFragmentManager());
         binding.previewViewpager.setAdapter(adapter);
@@ -161,6 +158,8 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
         } else if (id == R.id.preivew_commit) {
             setResult(RESULT_OK, getIntent());
             finish();
+        } else if (id == R.id.preview_back) {
+            onBackPressed();
         }
     }
 
@@ -179,7 +178,7 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
                 R.attr.preview_toolbarBgAlpha, R.attr.preview_bottomBarColorAlpha});
         PickerUtils.viewBackgroundAlpha(binding.previewToolbarRoot, typedArray.getInteger(2, -1));
         PickerUtils.viewBackgroundAlpha(binding.previewStatus, typedArray.getInteger(3, -1));
-        PickerUtils.toolbarBackgroundAlpha(binding.previewToolbar, typedArray.getInteger(4, -1), R.attr.preview_toolbarBgAlpha);
+        PickerUtils.viewBackgroundAlpha(binding.previewToolbar, typedArray.getInteger(4, -1));
         PickerUtils.viewBackgroundAlpha(binding.previewBottomRl, typedArray.getInteger(5, -1));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             BarFontDark.with(this).init(typedArray.getBoolean(0, false));
@@ -195,14 +194,4 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
             window.setNavigationBarColor(navigationBarColor);
         }
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 }

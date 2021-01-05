@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selection.folderlist.item.bg"
+    android:background="?selection.folderlist.item.rootbg"
     android:orientation="vertical"
     tools:viewBindingIgnore="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
+        android:background="?selection.folderlist.item.bg"
         android:paddingTop="10dp"
         android:paddingRight="16dp"
         android:paddingBottom="10dp">

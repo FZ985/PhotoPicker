@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="private_selection_toolbar_dark_style" parent="private_preview_toolbar_style">
+        <item name="android:background">@color/jcolor_3333333</item>
+    </style>
+
+    <style name="private_selection_back_dark_style" parent="private_selection_back_style">
+        <item name="android:background">@drawable/bg_material_dark</item>
+        <item name="android:src">@drawable/ic_back_black</item>
+    </style>
+
+    <style name="private_selection_folder_dark_style" parent="private_selection_folder_style">
+        <item name="android:background">@drawable/shape_selection_folder_dark_bg</item>
+    </style>
+
+    <style name="private_selection_bottom_dark_style" parent="private_selection_bottom_style">
+        <item name="android:background">@color/jcolor_3333333</item>
+    </style>
+
+    <style name="private_selection_bottom_preview_dark_style" parent="private_selection_bottom_preview_style">
+        <item name="android:textColor">@color/selection_preview_dark_textcolor</item>
+    </style>
+</resources>

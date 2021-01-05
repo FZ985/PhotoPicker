@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-    自定义控件样式,样式由外部定义
--->
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- toolbar样式   -->
     <style name="private_selection_toolbar_style">
@@ -11,19 +9,13 @@
         <item name="android:elevation">5dp</item>
     </style>
 
-    <!-- 返回按钮样式  黑色样式 -->
-    <style name="private_selection_back_dark_style">
+    <!-- 返回按钮样式  白色样式 -->
+    <style name="private_selection_back_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginLeft">15dp</item>
         <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/bg_material_dark</item>
-        <item name="android:src">@drawable/ic_back_black</item>
-    </style>
-
-    <!-- 返回按钮样式  白色样式 -->
-    <style name="private_selection_back_light_style" parent="private_selection_back_dark_style">
         <item name="android:background">@drawable/bg_material_light</item>
         <item name="android:src">@drawable/ic_back_white</item>
     </style>
@@ -72,7 +64,7 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <!--  选择底部确定  -->
+    <!--  选择底部确定、预览顶部按钮  -->
     <style name="Widget.Selection_Commit" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -83,5 +75,66 @@
         <item name="android:layout_marginRight">15dp</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_centerVertical">true</item>
+    </style>
+    <!--  预览toolbar  -->
+    <style name="private_preview_toolbar_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/jcolor_3333333</item>
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+    </style>
+    <!--  预览底部bottom  -->
+    <style name="private_preview_bottom_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+        <item name="android:background">@color/jcolor_3333333</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+    <!--  预览底部个数TextView  -->
+    <style name="private_preview_bottom_numtext">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:textColor">@color/jmaterial_white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <!--  预览选择根布局  -->
+    <style name="private_preview_check_root_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/bg_material_dark</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <style name="private_preview_check_imagesize_style">
+        <item name="android:layout_width">22dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_height">22dp</item>
+    </style>
+
+    <style name="private_preview_check_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_toRightOf">@id/preview_checkiv</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:text">选择</item>
+        <item name="android:textColor">@color/jmaterial_white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="internal_listVideo_Style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawableLeft">@drawable/ic_video</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textColor">@color/jmaterial_white</item>
     </style>
 </resources>
