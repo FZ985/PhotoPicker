@@ -7,6 +7,7 @@ import androidx.annotation.StyleRes;
 import androidx.fragment.app.Fragment;
 
 import com.material.selection.engine.ImageEngine;
+import com.material.selection.internal.entiy.CaptureStrategy;
 import com.material.selection.internal.entiy.SelectionSpec;
 import com.material.selection.internal.ui.MaterialSelectionActivity;
 
@@ -45,6 +46,11 @@ public final class SelectionCreator {
 
     public SelectionCreator capture(boolean enable) {
         mSelectionSpec.capture = enable;
+        return this;
+    }
+
+    public SelectionCreator captureStrategy(CaptureStrategy captureStrategy) {
+        mSelectionSpec.captureStrategy = captureStrategy;
         return this;
     }
 

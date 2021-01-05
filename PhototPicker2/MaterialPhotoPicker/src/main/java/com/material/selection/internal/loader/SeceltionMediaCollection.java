@@ -68,7 +68,6 @@ public class SeceltionMediaCollection implements LoaderManager.LoaderCallbacks<C
         List<Item> allList = new ArrayList<>();
         List<List<Item>> folderList = new ArrayList<>();
         HashMap<String, List<Item>> maps = new HashMap<>();
-        PickerUtils.log("data.moveToNext():" + data.moveToNext());
         while (data.moveToNext()) {
             int fileId = data.getInt(data.getColumnIndex(MediaStore.Files.FileColumns._ID));
             String displayName = data.getString(data.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME));

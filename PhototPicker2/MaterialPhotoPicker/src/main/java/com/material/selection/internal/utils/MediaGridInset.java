@@ -36,8 +36,10 @@ public class MediaGridInset extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
                                RecyclerView.State state) {
         int position = parent.getChildAdapterPosition(view); // item position
-        int column = position % mSpanCount; // item column
-
+        if (position >= 1) {
+            position = position - 1;
+        }
+        int column = (position) % mSpanCount; // item column
         if (mIncludeEdge) {
             // spacing - column * ((1f / spanCount) * spacing)
             outRect.left = mSpacing - column * mSpacing / mSpanCount;

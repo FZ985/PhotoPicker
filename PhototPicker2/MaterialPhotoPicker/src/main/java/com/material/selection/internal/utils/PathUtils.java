@@ -9,12 +9,49 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.text.TextUtils;
+
+import com.material.selection.internal.entiy.Item;
+import com.material.selection.internal.loader.AlbumMediaLoader;
+
+import java.io.File;
 
 /**
  * http://stackoverflow.com/a/27271131/4739220
  */
 
 public class PathUtils {
+
+    public static Item queryCapture(Context context, String absolutePath) {
+        if (!TextUtils.isEmpty(absolutePath)){
+            File file = new File(absolutePath);
+            String selection = MediaStore.MediaColumns.DISPLAY_NAME + "=?"
+                    + " AND "
+                    + MediaStore.MediaColumns.DISPLAY_NAME + "=?"
+                    + " AND " + MediaStore.MediaColumns.DISPLAY_NAME + "=?";
+            String fileName = file.getName();
+            String[] selectionArgs = {fileName, fileName, fileName};
+            Cursor cursor = context.getContentResolver().query(MediaStore.Files.getContentUri("external"),
+                    AlbumMediaLoader.PROJECTION,
+                    selection,
+                    selectionArgs,
+                    AlbumMediaLoader.ORDER_BY);
+            if (cursor != null && cursor.getCount() > 0 && cursor.moveToFirst()) {
+                int fileId = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID));
+                String displayName = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME));
+                String mimeType = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.MIME_TYPE));
+                String bucketId = cursor.getString(cursor.getColumnIndex(AlbumMediaLoader.COLUMN_BUCKET_ID));
+                String bucketDisplayName = cursor.getString(cursor.getColumnIndex(AlbumMediaLoader.COLUMN_BUCKET_DISPLAY_NAME));
+                long size = cursor.getLong(cursor.getColumnIndex(MediaStore.MediaColumns.SIZE));
+                long duration = cursor.getLong(cursor.getColumnIndex("duration"));
+                return Item.valueOf(fileId,mimeType,size,duration,displayName,bucketId,bucketDisplayName);
+            }
+        }
+
+        return null;
+    }
+
+
     /**
      * Get a file path from a Uri. This will get the the path for Storage Access
      * Framework Documents, as well as the _data field for the MediaStore and

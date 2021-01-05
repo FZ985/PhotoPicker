@@ -76,6 +76,10 @@ public class AlbumAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public List<List<Item>> getAlbums(){
+        return this.albums;
+    }
+
     @Override
     public int getCount() {
         return albums == null ? 0 : albums.size();

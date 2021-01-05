@@ -19,6 +19,8 @@ import com.material.selection.Selection;
 import com.material.selection.adapter.AlbumAdapter;
 import com.material.selection.adapter.SelectionListAdapter;
 import com.material.selection.databinding.ActivityMaterialSelectionBinding;
+import com.material.selection.internal.entiy.CaptureStrategy;
+import com.material.selection.internal.entiy.DefaultCaptureStrategy;
 import com.material.selection.internal.entiy.Item;
 import com.material.selection.internal.entiy.SelectCheckIns;
 import com.material.selection.internal.entiy.SelectionSpec;
@@ -48,6 +50,7 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
     private AlbumAdapter albumAdapter;
     private String previewString;
     private static final int START_PREVIEW_CODE = 0x111;
+    private CaptureStrategy mCaptureStrategy;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +67,7 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
         if (mSpec.needOrientationRestriction()) {
             setRequestedOrientation(mSpec.orientation);
         }
+        showLoading();
         SelectCheckIns.getInstance().registerCallback(this);
         binding.selectionBack.setOnClickListener(this);
         binding.selectionFolderLl.setOnClickListener(this);
@@ -82,7 +86,6 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
                 return 1;
             }
         });
-        binding.selectionRecycle.setHasFixedSize(true);
         binding.selectionRecycle.setLayoutManager(manager);
         int spacing = getResources().getDimensionPixelSize(R.dimen.media_grid_spacing);
         binding.selectionRecycle.addItemDecoration(new MediaGridInset(mSpec.spanCount, spacing, false));
@@ -97,8 +100,19 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
         typedArray.recycle();
     }
 
+    private void showLoading() {
+        TypedArray typedArray = getTheme().obtainStyledAttributes(new int[]{R.attr.selection_loadingView});
+        int resId = typedArray.getResourceId(0, -1);
+        typedArray.recycle();
+        if (resId != -1) {
+            binding.selectionEmpty.removeAllViews();
+            binding.selectionEmpty.addView(LayoutInflater.from(this).inflate(resId, null));
+        }
+    }
+
     @Override
     public void onLoadFinish(List<List<Item>> datas) {
+        binding.selectionEmpty.removeAllViews();
         if (datas != null && datas.size() > 0) {
             if (datas.get(0).size() > 0) {
                 binding.selectionFolderLl.setVisibility(View.VISIBLE);
@@ -123,12 +137,18 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
                 binding.selectionEmpty.removeAllViews();
                 binding.selectionEmpty.addView(LayoutInflater.from(this).inflate(resId, null));
             }
+            changeSatate();
         }
     }
 
     @Override
     public void onCapture() {
-
+        if (mSpec.captureStrategy != null) {
+            mCaptureStrategy = mSpec.captureStrategy;
+        } else {
+            mCaptureStrategy = new DefaultCaptureStrategy();
+        }
+        mCaptureStrategy.start(this);
     }
 
     @Override
@@ -173,10 +193,14 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (mCaptureStrategy != null && requestCode != START_PREVIEW_CODE) {
+            mCaptureStrategy.onActivityResult(this, requestCode, resultCode, data);
+        }
         if (requestCode == START_PREVIEW_CODE && data != null) {
             boolean back = data.getBooleanExtra("back", false);
             if (!back) commit();
         }
+
     }
 
     private void commit() {

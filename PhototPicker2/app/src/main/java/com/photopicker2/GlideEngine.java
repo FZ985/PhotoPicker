@@ -37,6 +37,7 @@ public class GlideEngine implements ImageEngine {
                 .load(uri)
                 .centerCrop()
                 .into(imageView);
+//        PickerUtils.log("load:" + uri);
     }
 
     @Override

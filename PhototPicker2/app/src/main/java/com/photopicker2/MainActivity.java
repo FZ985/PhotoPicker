@@ -35,8 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void toMaterial(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 100);
         }
+    }
+
+    public void toDarkMaterial(View view) {
+        Selection.from(this)
+                .choose(MimeType.ofAll())
+                .imageEngine(new GlideEngine())
+                .showSingleMediaType(false)
+                .maxSelectable(9)
+                .selectionThemeId(R.style.Selection_Dark)
+                .capture(true)
+                .forResult(100);
+
     }
 
     public static int runApp(Context context, String packageName) {
@@ -57,8 +69,9 @@ public class MainActivity extends AppCompatActivity {
         Selection.from(this)
                 .choose(MimeType.ofAll())
                 .imageEngine(new GlideEngine())
-                .showSingleMediaType(true)
+                .showSingleMediaType(false)
                 .maxSelectable(9)
+                .selectionThemeId(R.style.Selection_Light)
                 .capture(false)
                 .forResult(100);
     }

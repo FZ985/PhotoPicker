@@ -2,23 +2,25 @@ package com.material.selection.internal.utils;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 
 import androidx.core.graphics.ColorUtils;
-import androidx.core.view.ViewCompat;
+import androidx.core.os.EnvironmentCompat;
 
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.shape.MaterialShapeDrawable;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Description:
@@ -112,33 +114,6 @@ public class PickerUtils {
         }
     }
 
-    public static void toolbarBackgroundAlpha(MaterialToolbar view, int alpha, int attr) {
-        if (alpha != -1) {
-            if (alpha > 255) alpha = 255;
-            Drawable background = view.getBackground();
-            if (background != null) {
-                log(background.getClass().getName());
-            }
-            if (background != null && background instanceof ColorDrawable) {
-                int color = ((ColorDrawable) background).getColor();
-                view.setBackground(new ColorDrawable(ColorUtils.setAlphaComponent(color, alpha)));
-            }
-
-            if (background != null && background instanceof MaterialShapeDrawable) {
-                TypedArray typedArray = view.getContext().getTheme().obtainStyledAttributes(new int[]{attr});
-                int backgroundColor = typedArray.getColor(0, Color.TRANSPARENT);
-                typedArray.recycle();
-                view.setElevation(0);
-                ((MaterialShapeDrawable) background).setPadding(0, 0, 0, 0);
-                ((MaterialShapeDrawable) background).setShadowColor(Color.TRANSPARENT);
-                ((MaterialShapeDrawable) background).setFillColor(ColorStateList.valueOf(ColorUtils.setAlphaComponent(backgroundColor, alpha)));
-                ((MaterialShapeDrawable) background).initializeElevationOverlay(view.getContext());
-                ((MaterialShapeDrawable) background).setElevation(ViewCompat.getElevation(view));
-                ViewCompat.setBackground(view, background);
-            }
-        }
-    }
-
     public static int getStatusHeight(Context context) {
         int statusHeight = dip2px(context, 30);
         try {
@@ -152,4 +127,24 @@ public class PickerUtils {
         }
         return statusHeight;
     }
+
+    public static File createImageFile(boolean isVideo) throws IOException {
+        // Create an image file name
+        String timeStamp =
+                new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String imageFileName = String.format("JPEG_%s.%s", timeStamp, isVideo ? "mp4" : "jpg");
+        File storageDir;
+        storageDir = Environment.getExternalStoragePublicDirectory(
+                isVideo ? Environment.DIRECTORY_MOVIES : Environment.DIRECTORY_PICTURES);
+        if (!storageDir.exists()) storageDir.mkdirs();
+
+        // Avoid joining path components manually
+        File tempFile = new File(storageDir, imageFileName);
+        // Handle the situation that user's external storage is not ready
+        if (!Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(tempFile))) {
+            return null;
+        }
+        return tempFile;
+    }
+
 }

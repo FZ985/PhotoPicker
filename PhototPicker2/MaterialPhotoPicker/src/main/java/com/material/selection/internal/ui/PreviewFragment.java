@@ -1,19 +1,20 @@
 package com.material.selection.internal.ui;
 
-import android.content.ActivityNotFoundException;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.material.selection.R;
+import com.material.selection.internal.entiy.CaptureStrategy;
 import com.material.selection.internal.entiy.Item;
 import com.material.selection.internal.entiy.SelectionSpec;
 import com.material.selection.widget.PickerTouchImageView;
@@ -46,12 +47,10 @@ public class PreviewFragment extends Fragment {
                 video.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setDataAndType(item.uri, "video/*");
-                        try {
-                            startActivity(intent);
-                        } catch (ActivityNotFoundException e) {
-                            Toast.makeText(getContext(), "No App found supporting video preview", Toast.LENGTH_SHORT).show();
+                        if (SelectionSpec.getInstance().captureStrategy != null) {
+                            SelectionSpec.getInstance().captureStrategy.playVideo(getActivity(), PreviewFragment.this, item.uri);
+                        } else {
+                            captureStrategy.playVideo(getActivity(), PreviewFragment.this, item.uri);
                         }
                     }
                 });
@@ -80,4 +79,31 @@ public class PreviewFragment extends Fragment {
         fragment.setArguments(bundle);
         return fragment;
     }
+
+    private final CaptureStrategy captureStrategy = new CaptureStrategy() {
+        @Override
+        public void startActivityForResult(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivityResult(Activity activity, int requestCode, int resultCode, @Nullable Intent data) {
+
+        }
+
+        @Override
+        public String getAbsPath(Context context) {
+            return null;
+        }
+
+        @Override
+        public boolean isVideo() {
+            return false;
+        }
+
+        @Override
+        public String getAuthority(Context context) {
+            return null;
+        }
+    };
 }

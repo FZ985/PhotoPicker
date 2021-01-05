@@ -30,7 +30,7 @@ public final class AlbumMediaLoader extends CursorLoader {
             COLUMN_BUCKET_DISPLAY_NAME,
             "duration"};
 
-    private static final String ORDER_BY = (beforeAndroidTen()
+    public static final String ORDER_BY = (beforeAndroidTen()
             ? MediaStore.Images.Media.DATE_ADDED
             : MediaStore.Images.Media.DATE_TAKEN) + " DESC";
 

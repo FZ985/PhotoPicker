@@ -29,7 +29,7 @@ public final class SelectionSpec {
     public boolean capture;
     public int maxSelectable;
     public int orientation;
-
+    public CaptureStrategy captureStrategy;
     private SelectionSpec() {
     }
 
@@ -50,6 +50,7 @@ public final class SelectionSpec {
         capture = false;
         spanCount = 3;
         maxSelectable = 1;
+        captureStrategy = null;
         orientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
         themeId_selection = R.style.Material_Selection_Base;
     }
