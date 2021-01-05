@@ -221,6 +221,7 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
         finish();
     }
 
+
     @Override
     public void onBackPressed() {
         if (isShowFolder()) {

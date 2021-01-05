@@ -4,96 +4,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
+    android:animateLayoutChanges="true"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="?colorPrimary"
-        android:gravity="center"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-        app:title="">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="hhhhhhh" />
-    </com.google.android.material.appbar.MaterialToolbar>
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-    <RelativeLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主题" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/theme_def"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="默认" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/theme_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="亮色" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/theme_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="黑色" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="选择类型" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/choose_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="全部(图片、gif、视频)" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/choose_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="图片(jpeg、jpg、png、gif、bmp、webp)" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/choose_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="图片(jpeg、jpg、png、bmp、webp)" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/choose_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="图片(gif)" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/choose_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="14dp"
+                    android:text="视频(mpeg、mpg、mp4、m4v、mov、3gp、3gpp、3g2、3gpp2、mkv、webm、ts、avi)" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="单选/多选" />
+
+            <RadioGroup
+                android:id="@+id/choose_more_rg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rb_single"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="单选" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rb_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="多选" />
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/seek_nums"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:max="20"
+                android:progress="9"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="展示列数" />
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/seek_span"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:max="6"
+                android:min="1"
+                android:progress="3" />
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:layout_marginTop="4dp"
-        android:background="?colorPrimary"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/bg_material_light"
-            android:clickable="true"
-            android:src="@drawable/ic_back_white" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:layout_marginTop="4dp"
-        android:background="@color/white"
-        android:clickable="true"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/bg_material_light"
-            android:clickable="true"
-            android:src="@drawable/ic_back_black" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:layout_marginTop="4dp"
-        android:background="#333333"
-        android:clickable="true"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/bg_material_dark"
-            android:clickable="true"
-            android:src="@drawable/ic_back_white" />
-    </RelativeLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?colorPrimary"
-        android:clickable="true"
-        android:onClick="toMaterial"
-        android:padding="10dp"
-        android:src="@mipmap/ic_launcher_round" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="?colorPrimary"
-        android:clickable="true"
-        android:onClick="toDarkMaterial"
-        android:padding="10dp"
-        android:src="@mipmap/ic_launcher_round" />
-
+        android:layout_margin="10dp"
+        android:onClick="open"
+        android:text="open" />
 </LinearLayout>

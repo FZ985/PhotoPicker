@@ -1,17 +1,15 @@
 package com.photopicker2;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.transition.Transition;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.material.selection.engine.ImageEngine;
+import com.material.selection.internal.utils.PathUtils;
 import com.material.selection.widget.PickerTouchImageView;
 
 /**
@@ -24,8 +22,9 @@ public class GlideEngine implements ImageEngine {
     @Override
     public void loadFolderImage(Context context, ImageView imageView, Uri uri) {
         Glide.with(context)
-                .asBitmap()
                 .load(uri)
+                .asBitmap()
+                .thumbnail(0.3f)
                 .centerCrop()
                 .into(imageView);
     }
@@ -33,8 +32,9 @@ public class GlideEngine implements ImageEngine {
     @Override
     public void loadImage(Context context, ImageView imageView, Uri uri) {
         Glide.with(context)
-                .asBitmap()
                 .load(uri)
+                .asBitmap()
+                .thumbnail(0.3f)
                 .centerCrop()
                 .into(imageView);
 //        PickerUtils.log("load:" + uri);
@@ -43,26 +43,34 @@ public class GlideEngine implements ImageEngine {
     @Override
     public void loadGif(Context context, ImageView imageView, Uri uri) {
         Glide.with(context)
-                .asGif()
                 .load(uri)
+                .asGif()
+                .thumbnail(0.3f)
                 .centerCrop()
                 .into(imageView);
     }
 
     @Override
     public void loadPreviewImage(Context context, PickerTouchImageView imageView, Uri uri) {
+//        Glide.with(imageView.getContext())
+//                .asBitmap()
+//                .load(uri)
+//                .error(R.mipmap.ic_launcher_round)
+//                .thumbnail(0.1f)
+//                .into(new SimpleTarget<Bitmap>() {
+//                    @Override
+//                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+//                        imageView.setImageBitmap(resource);
+//                    }
+//                });
+
         Glide.with(imageView.getContext())
-                .load(uri)
-                .error(R.mipmap.ic_launcher_round)
-                .into(new CustomTarget<Drawable>() {
+                .load(PathUtils.getPath(context, uri))
+                .thumbnail(0.3f)
+                .into(new SimpleTarget<GlideDrawable>() {
                     @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
                         imageView.setImageDrawable(resource);
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
                     }
                 });
     }
@@ -70,8 +78,9 @@ public class GlideEngine implements ImageEngine {
     @Override
     public void loadPreviewGif(Context context, PickerTouchImageView imageView, Uri uri) {
         Glide.with(context)
-                .asGif()
                 .load(uri)
+                .asGif()
+                .thumbnail(0.1f)
                 .centerCrop()
                 .into(imageView);
     }
