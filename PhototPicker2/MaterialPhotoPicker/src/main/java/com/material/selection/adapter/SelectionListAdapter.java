@@ -80,15 +80,11 @@ public class SelectionListAdapter extends RecyclerView.Adapter<RecyclerView.View
             StringBuilder builder = new StringBuilder();
             if (photoVideo[0] > 0) {
                 builder.append(photoVideo[0]);
-                builder.append(" photo");
-                if (photoVideo[0] > 1)
-                    builder.append("s");
+                builder.append(" 张图片");
             }
             if (photoVideo[1] > 0) {
                 if (photoVideo[0] > 0) builder.append("、");
-                builder.append(photoVideo[1]).append(" video");
-                if (photoVideo[1] > 1)
-                    builder.append("s");
+                builder.append(photoVideo[1]).append(" 个视频");
             }
             footerViewHolder.footer.setText(builder);
         } else if (viewType == CAMERA) {
