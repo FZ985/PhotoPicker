@@ -7,8 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="?selection.bottom.height">
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/selection_empty"
@@ -21,56 +20,68 @@
             android:id="@+id/selection_recycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <LinearLayout
-            android:id="@+id/photo_folder_ll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?selection.folderlist.bg"
-            android:orientation="vertical"
-            android:paddingTop="?selection.toolbarHeight"
-            android:visibility="gone">
-
-            <ListView
-                android:id="@+id/photo_folderlv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="?selection.folderlist.divider"
-                android:dividerHeight="1px"
-                android:overScrollMode="never"
-                android:scrollbars="none" />
-        </LinearLayout>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/selection_toolbar"
-        style="?selection.toolbar">
+    <LinearLayout
+        android:id="@+id/selection_toolbarroot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selection.toolbarRoot.bg"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/selection_back"
-            style="?selection.back" />
+        <TextView
+            android:id="@+id/selection_statusbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selection.statusBarColor" />
 
-        <LinearLayout
-            android:id="@+id/selection_folder_ll"
-            style="?selection.folder">
-
-            <TextView
-                android:id="@+id/selection_folder_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="?selection.folder.textColor"
-                android:textSize="?selection.folder.textSize" />
+        <RelativeLayout
+            android:id="@+id/selection_toolbar"
+            style="?selection.toolbar">
 
             <ImageView
-                android:id="@+id/selection_folder_arrow"
-                style="?selection.folder.arrow" />
-        </LinearLayout>
-    </RelativeLayout>
+                android:id="@+id/selection_back"
+                style="?selection.back" />
 
+            <LinearLayout
+                android:id="@+id/selection_folder_ll"
+                style="?selection.folder">
+
+                <TextView
+                    android:id="@+id/selection_folder_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="?selection.folder.textColor"
+                    android:textSize="?selection.folder.textSize" />
+
+                <ImageView
+                    android:id="@+id/selection_folder_arrow"
+                    style="?selection.folder.arrow" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/photo_folder_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/selection_toolbarroot"
+        android:background="?selection.folderlist.bg"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/photo_folderlv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="?selection.folderlist.divider"
+            android:dividerHeight="1px"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/selection_bottom"
         style="?selection.bottom">

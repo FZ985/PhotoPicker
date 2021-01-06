@@ -30,4 +30,7 @@
     <color name="legacy_primary">#ff222222</color>
     <color name="legacy_control_activated">@color/legacy_green</color>
     <color name="legacy_control_normal">#99ffffff</color>
+
+    <color name="c02dbfe">#02dbfe</color>
+    <color name="c02affe">#02affe</color>
 </resources>

@@ -11,6 +11,8 @@
         <!--  自定义相关属性 -->
         <item name="selection.status.isDarkFont">false</item>
         <item name="selection.bg">@color/jgrey_50</item>
+        <item name="selection.toolbarRoot.bg">#00000000</item>
+        <item name="selection.statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="selection.toolbarHeight">?android:attr/actionBarSize</item>
         <item name="selection.toolbar">@style/private_selection_toolbar_style</item>
         <item name="selection.back">@style/private_selection_back_style</item>
@@ -31,6 +33,7 @@
         <item name="selection.bottom.commit">@style/Widget.Selection_Commit</item>
 
         <!--  列表相关属性  -->
+        <item name="selection.list.head.bg">@color/jmaterial_colorPrimary</item>
         <item name="selection.list.totalTextSize">15sp</item>
         <item name="selection.list.totalTextColor">@color/jcolor_3333333</item>
         <item name="selection.list.camera.bg">@color/jcolor_353535</item>

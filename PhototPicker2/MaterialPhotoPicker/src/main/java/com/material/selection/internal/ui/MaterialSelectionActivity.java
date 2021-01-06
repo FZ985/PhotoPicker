@@ -3,11 +3,13 @@ package com.material.selection.internal.ui;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -74,7 +76,7 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
         binding.photoFolderLl.setOnClickListener(this);
         binding.selectionCommit.setOnClickListener(this);
         binding.selectionPreviewTv.setOnClickListener(this);
-        adapter = new SelectionListAdapter(this, mSpec.spanCount, binding.selectionToolbar, this);
+        adapter = new SelectionListAdapter(this, mSpec.spanCount, binding.selectionToolbar, binding.selectionBottom, this);
         GridLayoutManager manager = new GridLayoutManager(this, mSpec.spanCount);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -93,10 +95,12 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
         binding.photoFolderlv.setAdapter(albumAdapter = new AlbumAdapter(binding.photoFolderlv, this));
         mediaCollection.onCreate(this);
         mediaCollection.load(this);
-        TypedArray typedArray = getTheme().obtainStyledAttributes(new int[]{R.attr.selection_status_isDarkFont, R.attr.selection_bottom_preview_text});
+        binding.selectionStatusbar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, PickerUtils.getStatusHeight(this)));
+        TypedArray typedArray = getTheme().obtainStyledAttributes(new int[]{R.attr.selection_status_isDarkFont, R.attr.selection_bottom_preview_text, R.attr.selection_statusBarColor});
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             BarFontDark.with(this).init(typedArray.getBoolean(0, false));
         previewString = typedArray.getString(1);
+        binding.selectionStatusbar.setBackgroundColor(typedArray.getColor(2, Color.BLACK));
         typedArray.recycle();
     }
 

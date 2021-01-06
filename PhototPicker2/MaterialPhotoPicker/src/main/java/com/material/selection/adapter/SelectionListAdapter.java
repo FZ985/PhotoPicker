@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.material.selection.internal.entiy.Item;
 import com.material.selection.internal.entiy.SelectCheckIns;
 import com.material.selection.internal.entiy.SelectionSpec;
 import com.material.selection.internal.listener.SelectionListener;
+import com.material.selection.internal.utils.PickerUtils;
 
 import java.util.List;
 
@@ -40,19 +42,23 @@ public class SelectionListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private SelectionListener listener;
     private Drawable normalDrawable, selectDrawable;
     private int headHeight;
+    private int bottomHeight;
 
-    public SelectionListAdapter(Context context, int spanCount, RelativeLayout toolbar, SelectionListener listener) {
+    public SelectionListAdapter(Context context, int spanCount, RelativeLayout toolbar, RelativeLayout bottomBar, SelectionListener listener) {
         this.mContext = context;
         this.listener = listener;
         int screenWidth = context.getResources().getDisplayMetrics().widthPixels;
         itemSize = (screenWidth - context.getResources().getDimensionPixelSize(
                 R.dimen.media_grid_spacing) * (spanCount - 1)) / spanCount;
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(new int[]{R.attr.selection_icon_normal, R.attr.selection_icon_selected, R.attr.selection_toolbarHeight});
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(new int[]{R.attr.selection_icon_normal, R.attr.selection_icon_selected, R.attr.selection_toolbarHeight, R.attr.selection_list_totalTextSize, R.attr.selection_bottom_height});
         normalDrawable = typedArray.getDrawable(0);
         selectDrawable = typedArray.getDrawable(1);
         float toolbarHeight = typedArray.getDimension(2, 0);
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) toolbar.getLayoutParams();
-        headHeight = ((int) toolbarHeight) + layoutParams.topMargin + layoutParams.bottomMargin;
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) toolbar.getLayoutParams();
+        RelativeLayout.LayoutParams bottomlayoutParams = (RelativeLayout.LayoutParams) bottomBar.getLayoutParams();
+        headHeight = ((int) toolbarHeight) + layoutParams.topMargin + layoutParams.bottomMargin + PickerUtils.getStatusHeight(context);
+        bottomHeight = bottomlayoutParams.topMargin + bottomlayoutParams.bottomMargin + bottomlayoutParams.height + ((int) typedArray.getDimension(3, PickerUtils.dip2px(context, 20)));
+        PickerUtils.log("bottomHeight:" + bottomHeight);
         typedArray.recycle();
     }
 
@@ -214,19 +220,20 @@ public class SelectionListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    private static class FooterViewHolder extends RecyclerView.ViewHolder {
+    private class FooterViewHolder extends RecyclerView.ViewHolder {
         public TextView footer;
 
         public FooterViewHolder(@NonNull View itemView) {
             super(itemView);
             footer = itemView.findViewById(R.id.photo_footer);
+            footer.setPadding(0,0,0,bottomHeight);
         }
     }
 
     private class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, headHeight));
+            itemView.setLayoutParams(new RecyclerView.LayoutParams(itemView.getContext().getResources().getDisplayMetrics().widthPixels, headHeight));
         }
     }
 

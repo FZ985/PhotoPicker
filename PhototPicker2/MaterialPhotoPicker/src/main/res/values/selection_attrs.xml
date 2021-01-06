@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="media_grid_spacing">2dp</dimen>
+    <item name="photo_status_bar_view" type="id" />
+
     <attr name="selection.status.isDarkFont" format="boolean" />
     <attr name="selection.bg" format="reference|color" />
+    <attr name="selection.toolbarRoot.bg" format="reference|color" />
     <attr name="selection.toolbarHeight" format="dimension" />
     <attr name="selection.toolbar" format="reference" />
+    <attr name="selection.statusBarColor" format="reference|color" />
     <attr name="selection.back" format="reference" />
 
     <attr name="selection.folder" format="reference" />
@@ -31,6 +36,7 @@
     <attr name="selection.bottom.preview.text" format="string" />
     <attr name="selection.bottom.commit" format="reference" />
 
+    <attr name="selection.list.head.bg" format="reference|color" />
     <attr name="selection.list.totalTextSize" format="dimension" />
     <attr name="selection.list.totalTextColor" format="reference|color" />
     <attr name="selection.list.camera.bg" format="reference|color" />
@@ -50,20 +56,20 @@
     <attr name="preview.titleBarColor" format="reference|color" />
     <attr name="preview.statusBarColor" format="reference|color" />
     <attr name="preview.navigationBarColor" format="reference|color" />
-    <attr name="preview.toolbar" format="reference"/>
+    <attr name="preview.toolbar" format="reference" />
     <attr name="preview.back" format="reference" />
     <attr name="preview.titleBarColorAlpha" format="integer" />
     <attr name="preview.statusBarColorAlpha" format="integer" />
     <attr name="preview.toolbarBgAlpha" format="integer" />
     <attr name="preview.bottomBarColorAlpha" format="integer" />
     <attr name="preview.commit" format="reference" />
-    <attr name="preview.bottom" format="reference"/>
+    <attr name="preview.bottom" format="reference" />
     <attr name="preview.bottom.numText" format="reference" />
     <attr name="preview.check.normal" format="reference" />
     <attr name="preview.check.selected" format="reference" />
-    <attr name="preview.check.root" format="reference"/>
-    <attr name="preview.check.imageSize" format="reference"/>
-    <attr name="preview.check.text" format="reference"/>
+    <attr name="preview.check.root" format="reference" />
+    <attr name="preview.check.imageSize" format="reference" />
+    <attr name="preview.check.text" format="reference" />
     <attr name="preview.playvideo" format="reference" />
 
 </resources>

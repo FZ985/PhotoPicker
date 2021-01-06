@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.material.selection.MimeType;
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             themeId = R.style.Material_Selection_Base;
         if (binding.themeLight.isChecked()) themeId = R.style.Selection_Light;
         if (binding.themeDark.isChecked()) themeId = R.style.Selection_Dark;
-
+        if (binding.themeCustom.isChecked()) themeId = R.style.Custom_PickerStyle;
+        if (binding.themeCustom2.isChecked()) themeId = R.style.Custom_PickerStyle2;
 
         boolean isSingle = false;
         Set<MimeType> mimeTypes = MimeType.ofAll();
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 .choose(mimeTypes)
                 .showSingleMediaType(isSingle)
                 .imageEngine(new GlideEngine())
+                .capture(binding.cameraCb.isChecked())
                 .selectionThemeId(themeId)
                 .spanCount(binding.seekSpan.getProgress())
                 .maxSelectable(binding.rbSingle.isChecked() ? 1 : binding.seekNums.getProgress())
@@ -82,8 +85,15 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE && data != null) {
             PickerUtils.log("返回结果");
             ArrayList<String> listExtra = data.getStringArrayListExtra(Selection.EXTRA_RESULT_SELECTION_PATH);
-            if (listExtra != null) {
+            if (listExtra != null && listExtra.size() > 0) {
                 PickerUtils.log("返回结果111：" + listExtra.toString());
+                StringBuilder sb = new StringBuilder();
+                for (String path : listExtra) {
+                    sb.append(path).append("\n\n");
+                }
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle("结果").setMessage(sb).show();
+
             }
         }
     }

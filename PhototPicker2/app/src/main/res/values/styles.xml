@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Custom_PickerStyle" parent="Material.Selection.Base">
+        <item name="selection.toolbar">@style/custom_picker_toolbar</item>
+        <item name="selection.statusBarColor">#00000000</item>
+        <item name="selection.list.head.bg">@color/black</item>
+        <item name="selection.toolbarRoot.bg">@drawable/p_statusbar_color</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@color/white</item>
+        <item name="selection.bottom.preview">@style/custom_picker_preview</item>
+        <item name="selection.bottom.commit">@style/custom_picker_commit</item>
+        <item name="preview.commit">@style/custom_picker_commit</item>
+        <item name="selection.bottom">@style/custom_picker_bottom</item>
+        <item name="selection.icon.selected">@mipmap/icon_select</item>
+        <item name="preview.check.selected">@mipmap/icon_select</item>
+        <item name="selection.folderlist.item.selectIcon">@mipmap/folder_select</item>
+    </style>
+
+    <style name="Custom_PickerStyle2" parent="Material.Selection.Base">
+        <item name="selection.toolbar">@style/custom_picker_toolbar2</item>
+        <item name="selection.statusBarColor">@color/teal_700</item>
+        <item name="selection.list.head.bg">@color/black</item>
+        <item name="selection.toolbarRoot.bg">#00000000</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@color/teal_700</item>
+        <item name="selection.bottom.preview">@style/custom_picker_preview2</item>
+        <item name="selection.bottom.commit">@style/custom_picker_commit2</item>
+        <item name="preview.commit">@style/custom_picker_commit2</item>
+        <item name="selection.bottom">@style/custom_picker_bottom2</item>
+        <item name="selection.icon.selected">@mipmap/icon_select2</item>
+        <item name="preview.check.selected">@mipmap/icon_select2</item>
+        <item name="selection.folderlist.item.selectIcon">@mipmap/folder_select2</item>
+    </style>
+
+    <style name="custom_picker_toolbar" parent="private_selection_toolbar_style">
+        <item name="android:background">#00000000</item>
+    </style>
+
+    <style name="custom_picker_toolbar2" parent="private_selection_toolbar_style">
+        <item name="android:background">@color/teal_200</item>
+    </style>
+
+    <style name="custom_picker_preview" parent="private_selection_bottom_preview_style">
+        <item name="android:textColor">@color/preview_textcolor</item>
+    </style>
+
+    <style name="custom_picker_preview2" parent="private_selection_bottom_preview_style">
+        <item name="android:textColor">@color/preview_textcolor2</item>
+    </style>
+
+    <style name="custom_picker_commit" parent="Widget.Selection_Commit">
+        <item name="backgroundTint">@color/preview_textcolor</item>
+    </style>
+
+    <style name="custom_picker_commit2" parent="Widget.Selection_Commit">
+        <item name="backgroundTint">@color/preview_textcolor2</item>
+    </style>
+
+    <style name="custom_picker_bottom" parent="private_selection_bottom_style">
+        <!--        <item name="android:background">@drawable/app_bottom_bg</item>-->
+    </style>
+
+    <style name="custom_picker_bottom2" parent="private_selection_bottom_style">
+        <item name="android:background">@drawable/bottom_bg2</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+</resources>
