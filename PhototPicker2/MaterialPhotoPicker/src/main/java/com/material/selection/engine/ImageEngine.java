@@ -1,21 +1,23 @@
 package com.material.selection.engine;
 
 import android.content.Context;
-import android.net.Uri;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.material.selection.widget.PickerTouchImageView;
+import com.material.selection.internal.entiy.Item;
 
 public interface ImageEngine {
 
-    void loadFolderImage(Context context, ImageView imageView, Uri uri);
+    void loadFolderImage(Context context, ImageView imageView, Item item);
 
-    void loadImage(Context context, ImageView imageView, Uri uri);
+    void loadImage(Context context, ImageView imageView, Item item);
 
-    void loadGif(Context context, ImageView imageView, Uri uri);
+    void loadGif(Context context, ImageView imageView, Item item);
 
-    void loadPreviewImage(Context context, PickerTouchImageView imageView, Uri uri);
+    void loadVideo(Context context, ImageView imageView, Item item);
 
-    void loadPreviewGif(Context context, PickerTouchImageView imageView, Uri uri);
+    void loadPreview(Context context, View preview, Item item);
 
+    View getPreview(Context context, ViewGroup parent);
 }

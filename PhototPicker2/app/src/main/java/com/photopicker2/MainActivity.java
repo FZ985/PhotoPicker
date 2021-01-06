@@ -13,6 +13,7 @@ import com.material.selection.MimeType;
 import com.material.selection.Selection;
 import com.material.selection.internal.utils.PickerUtils;
 import com.photopicker2.databinding.ActivityMainBinding;
+import com.photopicker2.glide.GlideEngine;
 
 import java.util.ArrayList;
 import java.util.EnumSet;

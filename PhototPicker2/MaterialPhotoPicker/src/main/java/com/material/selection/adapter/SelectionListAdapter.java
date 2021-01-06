@@ -103,9 +103,11 @@ public class SelectionListAdapter extends RecyclerView.Adapter<RecyclerView.View
             ImageViewHolder imageViewHolder = (ImageViewHolder) holder;
             final Item data = mDatas.get(SelectionSpec.getInstance().capture ? position - 2 : position - 1);
             if (data.isGif()) {
-                SelectionSpec.getInstance().imageEngine.loadGif(imageViewHolder.image.getContext(), imageViewHolder.image, data.getContentUri());
+                SelectionSpec.getInstance().imageEngine.loadGif(imageViewHolder.image.getContext(), imageViewHolder.image, data);
+            } else if (data.isVideo()) {
+                SelectionSpec.getInstance().imageEngine.loadVideo(imageViewHolder.image.getContext(), imageViewHolder.image, data);
             } else {
-                SelectionSpec.getInstance().imageEngine.loadImage(imageViewHolder.image.getContext(), imageViewHolder.image, data.getContentUri());
+                SelectionSpec.getInstance().imageEngine.loadImage(imageViewHolder.image.getContext(), imageViewHolder.image, data);
             }
             if (SelectCheckIns.getInstance().getSelectMaps().containsKey(data.id)) {
                 AnimalHelp.layerAnim(imageViewHolder.layer, true);

@@ -38,13 +38,11 @@ public abstract class CaptureStrategy {
 
     public abstract String getAuthority(Context context);
 
-    public void playVideo(Activity activity, Fragment fragment, Uri uri) {
+    public void playVideo(Activity activity, Uri uri) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, "video/*");
         try {
-            if (fragment != null) {
-                fragment.startActivity(intent);
-            } else activity.startActivity(intent);
+            activity.startActivity(intent);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(activity.getApplicationContext(), "No App found supporting video preview", Toast.LENGTH_SHORT).show();
         }

@@ -107,7 +107,7 @@ public class AlbumAdapter extends BaseAdapter {
         if (items.size() > 0) {
             holder.folder_dirName.setText(position == 0 ? allName : items.get(0).bucketDisplayName);
             holder.folder_imgNums.setText(String.valueOf(items.size()));
-            SelectionSpec.getInstance().imageEngine.loadFolderImage(holder.folder_thumb.getContext(), holder.folder_thumb, items.get(0).getContentUri());
+            SelectionSpec.getInstance().imageEngine.loadFolderImage(holder.folder_thumb.getContext(), holder.folder_thumb, items.get(0));
         } else {
         }
         return convertView;

@@ -1,7 +1,10 @@
 package com.material.selection.internal.utils;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,9 +15,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.core.graphics.ColorUtils;
 import androidx.core.os.EnvironmentCompat;
+import androidx.fragment.app.Fragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +37,18 @@ public class PickerUtils {
 
     public static void log(String l) {
         Log.e("material_selection", l);
+    }
+
+    public void playVideo(Activity activity, Fragment fragment, Uri uri) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(uri, "video/*");
+        try {
+            if (fragment != null) {
+                fragment.startActivity(intent);
+            } else activity.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(activity.getApplicationContext(), "No App found supporting video preview", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static String getPath(ContentResolver resolver, Uri uri) {

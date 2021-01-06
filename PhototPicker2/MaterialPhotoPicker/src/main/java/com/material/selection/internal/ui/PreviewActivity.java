@@ -8,17 +8,23 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.material.selection.R;
-import com.material.selection.adapter.PreviewAdapter;
 import com.material.selection.databinding.ActivityPreviewBinding;
 import com.material.selection.internal.entiy.Item;
 import com.material.selection.internal.entiy.SelectCheckIns;
@@ -30,7 +36,7 @@ import com.material.selection.internal.utils.bar.BarFontDark;
 import java.io.File;
 
 /**
- * Description:
+ * Description:图片预览界面
  * Author: jfz
  * Date: 2020-12-29 18:19
  */
@@ -67,7 +73,7 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
         commitText = binding.preivewCommit.getText().toString();
         adapter = new PreviewAdapter(getSupportFragmentManager());
         binding.previewViewpager.setAdapter(adapter);
-        binding.previewViewpager.setOffscreenPageLimit(2);
+        binding.previewViewpager.setOffscreenPageLimit(5);
         index = SelectCheckIns.getInstance().getIndex();
         binding.previewViewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -108,25 +114,29 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
         binding.preivewCommit.setText((selectNums > 0) ? (commitText + "(" + selectNums + "/" + mSpec.maxSelectable + ")") : commitText);
     }
 
+    public void autoBar() {
+        if (binding.previewToolbarRoot.getVisibility() == View.VISIBLE) {
+            // 隐藏状态栏
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }
+            binding.previewToolbarRoot.setVisibility(View.GONE);
+            binding.previewBottomRl.setVisibility(View.GONE);
+        } else {
+            // 显示状态栏
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }
+            binding.previewToolbarRoot.setVisibility(View.VISIBLE);
+            binding.previewBottomRl.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.preview_touch) {
-            if (binding.previewToolbarRoot.getVisibility() == View.VISIBLE) {
-                // 隐藏状态栏
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                }
-                binding.previewToolbarRoot.setVisibility(View.GONE);
-                binding.previewBottomRl.setVisibility(View.GONE);
-            } else {
-                // 显示状态栏
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                }
-                binding.previewToolbarRoot.setVisibility(View.VISIBLE);
-                binding.previewBottomRl.setVisibility(View.VISIBLE);
-            }
+            autoBar();
         } else if (id == R.id.preview_check_ll) {
             int selectNums = SelectCheckIns.getInstance().getSelectNums();
             Item item = SelectCheckIns.getInstance().getPreviewItems().get(binding.previewViewpager.getCurrentItem());
@@ -192,6 +202,52 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
             window.setNavigationBarColor(navigationBarColor);
+        }
+    }
+
+    private static class PreviewAdapter extends FragmentStatePagerAdapter {
+        public PreviewAdapter(@NonNull FragmentManager fm) {
+            super(fm, BEHAVIOR_SET_USER_VISIBLE_HINT);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return PreviewFragment.instance(SelectCheckIns.getInstance().getPreviewItems().get(position));
+        }
+
+        @Override
+        public int getCount() {
+            return SelectCheckIns.getInstance().getPreviewItems() == null ? 0 : SelectCheckIns.getInstance().getPreviewItems().size();
+        }
+    }
+
+    public static class PreviewFragment extends Fragment {
+        private FrameLayout previewRoot;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.selection_item_preview, null);
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            Item item = getArguments().getParcelable("item");
+            previewRoot = view.findViewById(R.id.preview_root);
+            View preview = SelectionSpec.getInstance().imageEngine.getPreview(getActivity(), previewRoot);
+            if (preview != null) {
+                SelectionSpec.getInstance().imageEngine.loadPreview(getActivity(), preview, item);
+            }
+        }
+
+        public static PreviewFragment instance(Item item) {
+            PreviewFragment fragment = new PreviewFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("item", item);
+            fragment.setArguments(bundle);
+            return fragment;
         }
     }
 }
