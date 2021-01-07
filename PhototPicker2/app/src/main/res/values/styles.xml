@@ -29,11 +29,17 @@
         <item name="selection.icon.selected">@mipmap/icon_select2</item>
         <item name="preview.check.selected">@mipmap/icon_select2</item>
         <item name="selection.folderlist.item.selectIcon">@mipmap/folder_select2</item>
+        <item name="selection.folder">@style/custom_picker_topfolder</item>
     </style>
 
     <style name="custom_picker_toolbar" parent="private_selection_toolbar_style">
         <item name="android:background">#00000000</item>
         <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="custom_picker_topfolder" parent="private_selection_folder_style">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_toRightOf">@null</item>
     </style>
 
     <style name="custom_picker_toolbar2" parent="private_selection_toolbar_style">

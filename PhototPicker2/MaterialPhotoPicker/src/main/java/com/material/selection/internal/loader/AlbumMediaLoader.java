@@ -51,8 +51,8 @@ public final class AlbumMediaLoader extends CursorLoader {
                     + MediaStore.MediaColumns.MIME_TYPE + "=?"
                     + " AND " + MediaStore.MediaColumns.SIZE + ">0";
 
-    private static String[] getSelectionArgsForGifType(int mediaType) {
-        return new String[]{"image/gif", "image/gif"};
+    private static String[] getSelectionArgsForGifType() {
+        return new String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE), "image/gif"};
     }
     // =========================================================
 
@@ -76,7 +76,7 @@ public final class AlbumMediaLoader extends CursorLoader {
         String[] selectionArgs;
         if (SelectionSpec.getInstance().onlyShowGif()) {
             selection = SELECTION_ALL_FOR_GIF;
-            selectionArgs = getSelectionArgsForGifType(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE);
+            selectionArgs = getSelectionArgsForGifType();
         } else if (SelectionSpec.getInstance().onlyShowImages()) {
             selection = SELECTION_ALL_FOR_SINGLE_MEDIA_TYPE;
             selectionArgs = getSelectionArgsForSingleMediaType(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE);
