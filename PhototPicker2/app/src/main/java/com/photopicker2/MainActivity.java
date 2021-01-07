@@ -1,20 +1,29 @@
 package com.photopicker2;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.material.selection.MimeType;
 import com.material.selection.Selection;
+import com.material.selection.engine.ImageEngine;
+import com.material.selection.internal.entiy.Item;
+import com.material.selection.internal.listener.OnSelectionUI;
 import com.material.selection.internal.utils.PickerUtils;
 import com.photopicker2.databinding.ActivityMainBinding;
 import com.photopicker2.glide.GlideEngine;
+import com.photopicker2.impl.OnSelectionUIImpl;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -40,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void open(View view) {
+        OnSelectionUI selectionUI = null;
+        ImageEngine engine = new GlideEngine();
         int themeId = R.style.Material_Selection_Base;
         if (binding.themeDef.isChecked())
             themeId = R.style.Material_Selection_Base;
@@ -47,6 +58,20 @@ public class MainActivity extends AppCompatActivity {
         if (binding.themeDark.isChecked()) themeId = R.style.Selection_Dark;
         if (binding.themeCustom.isChecked()) themeId = R.style.Custom_PickerStyle;
         if (binding.themeCustom2.isChecked()) themeId = R.style.Custom_PickerStyle2;
+        if (binding.themeCustom3.isChecked()) {
+            themeId = R.style.Custom_PickerStyle3;
+            selectionUI = new OnSelectionUIImpl();
+            engine = new GlideEngine() {
+                @Override
+                public void loadFolderImage(Context context, ImageView imageView, Item item) {
+                    Glide.with(imageView.getContext())
+                            .asBitmap()
+                            .load(item.getContentUri())
+                            .transform(new CenterCrop(), new RoundedCorners(PickerUtils.dip2px(context, 15)))
+                            .into(imageView);
+                }
+            };
+        }
 
         boolean isSingle = false;
         Set<MimeType> mimeTypes = MimeType.ofAll();
@@ -71,9 +96,10 @@ public class MainActivity extends AppCompatActivity {
         Selection.from(this)
                 .choose(mimeTypes)
                 .showSingleMediaType(isSingle)
-                .imageEngine(new GlideEngine())
+                .imageEngine(engine)
                 .capture(binding.cameraCb.isChecked())
                 .selectionThemeId(themeId)
+                .setOnSelectionUI(selectionUI)
                 .spanCount(binding.seekSpan.getProgress())
                 .maxSelectable(binding.rbSingle.isChecked() ? 1 : binding.seekNums.getProgress())
                 .forResult(REQUEST_CODE);

@@ -38,4 +38,22 @@ public interface OnSelectionUI {
               LinearLayout chooseFoldeRoot,
               TextView folderTv,
               ImageView folderArrow);
+
+    void onLoadFinishUI(LinearLayout toolbarRoot,
+                        View statusBar,
+                        RelativeLayout toolbar,
+                        RelativeLayout bottomBar,
+                        RecyclerView recyclerView,
+                        LinearLayout folderListRoot,
+                        ListView folderList,
+                        ImageView back,
+                        LinearLayout chooseFoldeRoot,
+                        TextView folderTv,
+                        ImageView folderArrow);
+
+    void onChooseFolderUI(LinearLayout toolbarRoot, RelativeLayout toolbar,
+                          RelativeLayout bottomBar, LinearLayout folderListRoot,
+                          ListView folderList,
+                          ImageView back,
+                          LinearLayout chooseFoldeRoot);
 }

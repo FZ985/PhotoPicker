@@ -62,11 +62,17 @@
                     android:layout_height="wrap_content"
                     android:text="自定义2" />
 
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/theme_custom3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="自定义3" />
+
             </RadioGroup>
 
             <CheckBox
                 android:id="@+id/camera_cb"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="相机" />
@@ -84,14 +90,14 @@
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/choose_1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="全部(图片、gif、视频)" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/choose_2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="图片(jpeg、jpg、png、gif、bmp、webp)" />
 
@@ -103,13 +109,13 @@
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/choose_4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="图片(gif)" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/choose_5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="14dp"
                     android:text="视频(mpeg、mpg、mp4、m4v、mov、3gp、3gpp、3g2、3gpp2、mkv、webm、ts、avi)" />

@@ -9,28 +9,20 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#ffffff</color>
 
-
-    <!-- A bright Android-y green -->
-    <color name="legacy_green">#ff90df25</color>
-
     <!-- A bright orange suitable for use in the early 2000s -->
     <color name="legacy_orange">#fffea50b</color>
 
-    <!-- Highlight colors for the legacy themes -->
-    <eat-comment />
-
-    <color name="legacy_pressed_highlight">#fffeaa0c</color>
     <color name="legacy_selected_highlight">#fff17a0a</color>
-    <color name="legacy_long_pressed_highlight">#ffffffff</color>
 
-    <!-- Forward compatibility for Material-style theme colors -->
-    <eat-comment />
-
-    <color name="legacy_primary_dark">@color/black</color>
-    <color name="legacy_primary">#ff222222</color>
-    <color name="legacy_control_activated">@color/legacy_green</color>
     <color name="legacy_control_normal">#99ffffff</color>
 
     <color name="c02dbfe">#02dbfe</color>
     <color name="c02affe">#02affe</color>
+
+    <color name="theme3_111a7e">#111a7e</color>
+    <color name="c0d156c">#0d156c</color>
+    <color name="theme3_1f1acb">#1f1acb</color>
+    <color name="c7773f8">#7773f8</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="blue_bilibili">#04a4de</color>
 </resources>

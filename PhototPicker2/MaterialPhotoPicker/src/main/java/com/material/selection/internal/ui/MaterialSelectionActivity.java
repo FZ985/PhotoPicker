@@ -135,6 +135,9 @@ public class MaterialSelectionActivity extends AppCompatActivity implements Sele
                 showEmpty();
             }
         }
+        if (mSpec.selectionUI != null) {
+            mSpec.selectionUI.onLoadFinishUI(binding.selectionToolbarroot, binding.selectionStatusbar, binding.selectionToolbar, binding.selectionBottom, binding.selectionRecycle, binding.photoFolderLl, binding.photoFolderlv, binding.selectionBack, binding.selectionFolderLl, binding.selectionFolderTv, binding.selectionFolderArrow);
+        }
     }
 
     private void showEmpty() {
@@ -165,6 +168,9 @@ public class MaterialSelectionActivity extends AppCompatActivity implements Sele
     public void selectAlbum(List<Item> albums) {
         adapter.setData(albums);
         binding.selectionFolderTv.setText(albumAdapter.getFolderName());
+        if (mSpec.selectionUI != null) {
+            mSpec.selectionUI.onChooseFolderUI(binding.selectionToolbarroot, binding.selectionToolbar, binding.selectionBottom, binding.photoFolderLl, binding.photoFolderlv, binding.selectionBack, binding.selectionFolderLl);
+        }
     }
 
     @Override

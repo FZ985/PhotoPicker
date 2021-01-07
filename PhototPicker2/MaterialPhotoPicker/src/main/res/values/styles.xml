@@ -47,8 +47,8 @@
         <item name="selection.icon.selected">@drawable/photo_icon_select</item>
 
         <!--  文件夹列表相关  -->
+        <item name="selection.folderlist">@style/private_selection_folderlist_root_style</item>
         <item name="selection.folderlist.allName">图片和视频</item>
-        <item name="selection.folderlist.bg">#80000000</item>
         <item name="selection.folderlist.divider">#e4e4e4</item>
         <item name="selection.folderlist.item.rootbg">@color/jmaterial_white</item>
         <item name="selection.folderlist.item.bg">@drawable/bg_material_dark</item>

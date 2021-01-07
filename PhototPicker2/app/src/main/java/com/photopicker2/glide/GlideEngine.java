@@ -51,7 +51,7 @@ public class GlideEngine extends DefauleEngine {
             size = context.getResources().getDisplayMetrics().widthPixels / 3;
         }
         Glide.with(imageView.getContext())
-                .asDrawable()
+                .asBitmap()
                 .load(item.getContentUri())
                 .thumbnail(0.1f)//图像的 百分之十
                 .centerCrop()

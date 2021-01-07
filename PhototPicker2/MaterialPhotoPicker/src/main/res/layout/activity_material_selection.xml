@@ -64,14 +64,10 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/photo_folder_ll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/selection_toolbarroot"
-        android:background="?selection.folderlist.bg"
-        android:orientation="vertical"
-        android:visibility="gone">
+        style="?selection.folderlist">
 
         <ListView
             android:id="@+id/photo_folderlv"
@@ -82,6 +78,7 @@
             android:overScrollMode="never"
             android:scrollbars="none" />
     </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/selection_bottom"
         style="?selection.bottom">

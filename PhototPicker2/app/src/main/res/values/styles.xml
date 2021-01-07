@@ -32,6 +32,27 @@
         <item name="selection.folder">@style/custom_picker_topfolder</item>
     </style>
 
+    <style name="Custom_PickerStyle3" parent="Material.Selection.Base">
+        <item name="selection.statusBarColor">@color/transparent</item>
+        <item name="selection.toolbar">@style/custom_picker_toolbar</item>
+        <item name="selection.list.head.bg">@mipmap/icon_theme3</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@color/theme3_111a7e</item>
+        <item name="selection.bottom">@style/custom_picker_bottom3</item>
+        <item name="selection.bottom.preview">@style/custom_picker_preview3</item>
+        <item name="selection.bottom.commit">@style/custom_picker_commit3</item>
+        <item name="selection.icon.selected">@mipmap/bilibili_yes</item>
+        <item name="selection.icon.normal">@mipmap/bilibili_select_no</item>
+        <item name="preview.check.selected">@mipmap/bilibili_yes</item>
+        <item name="selection.folderlist.item.selectIcon">@null</item>
+        <item name="selection.folderlist">@style/bilibili_folder_list</item>
+        <item name="selection.bg">@color/theme3_111a7e</item>
+        <item name="selection.folderlist.item.dirNameTextColor">@color/c7773f8</item>
+        <item name="selection.folderlist.item.dirNumsTextColor">@color/c7773f8</item>
+        <item name="selection.folderlist.item.rootbg">@color/c0d156c</item>
+        <item name="selection.folderlist.item.bg">@drawable/bg_material_light</item>
+        <item name="selection.folderlist.divider">@color/theme3_1f1acb</item>
+    </style>
+
     <style name="custom_picker_toolbar" parent="private_selection_toolbar_style">
         <item name="android:background">#00000000</item>
         <item name="android:elevation">0dp</item>
@@ -77,6 +98,38 @@
         <item name="android:layout_height">48dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
+    </style>
+
+    <style name="custom_picker_bottom3" parent="private_selection_bottom_style">
+        <item name="android:background">@mipmap/bilibili_bottom</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="custom_picker_preview3" parent="private_selection_bottom_preview_style">
+        <item name="android:textColor">@color/preview_textcolor3</item>
+    </style>
+
+    <style name="custom_picker_commit3" parent="Widget.Selection_Commit">
+        <item name="cornerRadius">20dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="android:textColor">@color/preview_textcolor3</item>
+        <item name="android:drawableLeft">@drawable/bilibili_selector</item>
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="android:layout_marginRight">0dp</item>
+    </style>
+
+    <style name="bilibili_folder_list" parent="private_selection_folderlist_root_style">
+        <item name="android:background">#00000000</item>
+        <item name="android:paddingLeft">16dp</item>
     </style>
 
 </resources>

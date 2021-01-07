@@ -108,6 +108,15 @@
         <item name="android:paddingRight">15dp</item>
     </style>
 
+    <style name="private_selection_folderlist_root_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_below">@id/selection_toolbarroot</item>
+        <item name="android:background">#80000000</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
     <style name="private_preview_check_imagesize_style">
         <item name="android:layout_width">22dp</item>
         <item name="android:layout_centerVertical">true</item>

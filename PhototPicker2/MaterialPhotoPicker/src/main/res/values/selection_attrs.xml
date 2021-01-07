@@ -19,8 +19,8 @@
     <attr name="selection.emptyView" format="reference" />
     <attr name="selection.loadingView" format="reference" />
 
+    <attr name="selection.folderlist" format="reference" />
     <attr name="selection.folderlist.allName" format="string" />
-    <attr name="selection.folderlist.bg" format="reference|color" />
     <attr name="selection.folderlist.divider" format="reference|color" />
     <attr name="selection.folderlist.item.rootbg" format="reference|color" />
     <attr name="selection.folderlist.item.bg" format="reference|color" />
