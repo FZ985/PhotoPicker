@@ -8,6 +8,7 @@ import androidx.annotation.StyleRes;
 import com.material.selection.MimeType;
 import com.material.selection.R;
 import com.material.selection.engine.ImageEngine;
+import com.material.selection.internal.listener.OnSelectionUI;
 
 import java.util.Set;
 
@@ -30,6 +31,7 @@ public final class SelectionSpec {
     public int maxSelectable;
     public int orientation;
     public CaptureStrategy captureStrategy;
+    public OnSelectionUI selectionUI;
     private SelectionSpec() {
     }
 
@@ -51,6 +53,7 @@ public final class SelectionSpec {
         spanCount = 3;
         maxSelectable = 1;
         captureStrategy = null;
+        selectionUI = null;
         orientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
         themeId_selection = R.style.Material_Selection_Base;
     }

@@ -33,10 +33,12 @@
 
     <style name="custom_picker_toolbar" parent="private_selection_toolbar_style">
         <item name="android:background">#00000000</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
     <style name="custom_picker_toolbar2" parent="private_selection_toolbar_style">
         <item name="android:background">@color/teal_200</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
     <style name="custom_picker_preview" parent="private_selection_bottom_preview_style">
@@ -52,7 +54,9 @@
     </style>
 
     <style name="custom_picker_commit2" parent="Widget.Selection_Commit">
+        <item name="cornerRadius">30dp</item>
         <item name="backgroundTint">@color/preview_textcolor2</item>
+        <item name="android:layout_marginRight">0dp</item>
     </style>
 
     <style name="custom_picker_bottom" parent="private_selection_bottom_style">

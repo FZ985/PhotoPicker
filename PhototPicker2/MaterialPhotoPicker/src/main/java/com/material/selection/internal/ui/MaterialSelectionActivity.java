@@ -2,6 +2,8 @@ package com.material.selection.internal.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
@@ -14,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.material.selection.R;
@@ -44,7 +47,7 @@ import java.util.List;
  * Author: jfz
  * Date: 2020-12-21 18:03
  */
-public class MaterialSelectionActivity extends BaseSelectionActivity implements SelectCheckCallback, SeceltionMediaCollection.LoaderMediaCallback, View.OnClickListener, SelectionListener {
+public class MaterialSelectionActivity extends AppCompatActivity implements SelectCheckCallback, SeceltionMediaCollection.LoaderMediaCallback, View.OnClickListener, SelectionListener {
     private ActivityMaterialSelectionBinding binding;
     private SelectionSpec mSpec;
     private SeceltionMediaCollection mediaCollection = new SeceltionMediaCollection();
@@ -102,6 +105,9 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
         previewString = typedArray.getString(1);
         binding.selectionStatusbar.setBackgroundColor(typedArray.getColor(2, Color.BLACK));
         typedArray.recycle();
+        if (mSpec.selectionUI != null) {
+            mSpec.selectionUI.onUI(binding.selectionToolbarroot, binding.selectionStatusbar, binding.selectionToolbar, binding.selectionBottom, binding.selectionRecycle, binding.photoFolderLl, binding.photoFolderlv, binding.selectionBack, binding.selectionFolderLl, binding.selectionFolderTv, binding.selectionFolderArrow);
+        }
     }
 
     private void showLoading() {
@@ -263,5 +269,18 @@ public class MaterialSelectionActivity extends BaseSelectionActivity implements 
         mediaCollection = null;
         adapter = null;
         albumAdapter = null;
+    }
+
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        if (res != null) {
+            Configuration config = res.getConfiguration();
+            if (config != null && config.fontScale != 1.0f) {
+                config.fontScale = 1.0f;
+                res.updateConfiguration(config, res.getDisplayMetrics());
+            }
+        }
+        return res;
     }
 }

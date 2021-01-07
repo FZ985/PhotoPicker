@@ -2,6 +2,8 @@ package com.material.selection.internal.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -39,7 +42,7 @@ import java.io.File;
  * Author: jfz
  * Date: 2020-12-29 18:19
  */
-public class PreviewActivity extends BaseSelectionActivity implements View.OnClickListener {
+public class PreviewActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityPreviewBinding binding;
     private SelectionSpec mSpec;
     private PreviewAdapter adapter;
@@ -244,5 +247,18 @@ public class PreviewActivity extends BaseSelectionActivity implements View.OnCli
             fragment.setArguments(bundle);
             return fragment;
         }
+    }
+
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        if (res != null) {
+            Configuration config = res.getConfiguration();
+            if (config != null && config.fontScale != 1.0f) {
+                config.fontScale = 1.0f;
+                res.updateConfiguration(config, res.getDisplayMetrics());
+            }
+        }
+        return res;
     }
 }

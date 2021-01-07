@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import com.material.selection.engine.ImageEngine;
 import com.material.selection.internal.entiy.CaptureStrategy;
 import com.material.selection.internal.entiy.SelectionSpec;
+import com.material.selection.internal.listener.OnSelectionUI;
 import com.material.selection.internal.ui.MaterialSelectionActivity;
 
 import java.util.Set;
@@ -51,6 +52,11 @@ public final class SelectionCreator {
 
     public SelectionCreator captureStrategy(CaptureStrategy captureStrategy) {
         mSelectionSpec.captureStrategy = captureStrategy;
+        return this;
+    }
+
+    public SelectionCreator setOnSelectionUI(OnSelectionUI selectionUI) {
+        mSelectionSpec.selectionUI = selectionUI;
         return this;
     }
 
