@@ -61,7 +61,13 @@ public class GlideEngine extends DefauleEngine {
 
     @Override
     public void loadGif(Context context, ImageView imageView, Item item) {
-        loadImage(context, imageView, item);
+        Glide.with(imageView.getContext())
+                .asGif()
+                .load(item.getContentUri())
+                .thumbnail(0.1f)//图像的 百分之十
+                .centerCrop()
+                .override(size, size)//屏幕宽度的三分之一大小
+                .into(imageView);
     }
 
     @Override

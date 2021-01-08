@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Set;
 
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private final int REQUEST_CODE = 100;
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 .spanCount(binding.seekSpan.getProgress())
                 .maxSelectable(binding.rbSingle.isChecked() ? 1 : binding.seekNums.getProgress())
                 .forResult(REQUEST_CODE);
+
     }
 
     @Override

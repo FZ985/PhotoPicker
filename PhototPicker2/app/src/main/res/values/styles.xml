@@ -45,12 +45,13 @@
         <item name="preview.check.selected">@mipmap/bilibili_yes</item>
         <item name="selection.folderlist.item.selectIcon">@null</item>
         <item name="selection.folderlist">@style/bilibili_folder_list</item>
-        <item name="selection.bg">@color/theme3_111a7e</item>
+        <item name="selection.bg">@color/c0d156c</item>
         <item name="selection.folderlist.item.dirNameTextColor">@color/c7773f8</item>
         <item name="selection.folderlist.item.dirNumsTextColor">@color/c7773f8</item>
         <item name="selection.folderlist.item.rootbg">@color/c0d156c</item>
         <item name="selection.folderlist.item.bg">@drawable/bg_material_light</item>
         <item name="selection.folderlist.divider">@color/theme3_1f1acb</item>
+        <item name="selection.list.totalTextColor">@color/c7773f8</item>
     </style>
 
     <style name="custom_picker_toolbar" parent="private_selection_toolbar_style">
