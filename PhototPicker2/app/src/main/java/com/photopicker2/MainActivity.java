@@ -58,16 +58,16 @@ public class MainActivity extends AppCompatActivity {
         if (binding.themeDark.isChecked()) themeId = R.style.Selection_Dark;
         if (binding.themeCustom.isChecked()) themeId = R.style.Custom_PickerStyle;
         if (binding.themeCustom2.isChecked()) themeId = R.style.Custom_PickerStyle2;
-        if (binding.themeCustom3.isChecked()) {
+        if (binding.themeCustom3.isChecked() || binding.themeCustom4.isChecked()) {
             themeId = R.style.Custom_PickerStyle3;
-            selectionUI = new OnSelectionUIImpl();
+            selectionUI = new OnSelectionUIImpl(binding.themeCustom4.isChecked());
             engine = new GlideEngine() {
                 @Override
                 public void loadFolderImage(Context context, ImageView imageView, Item item) {
                     Glide.with(imageView.getContext())
                             .asBitmap()
                             .load(item.getContentUri())
-                            .transform(new CenterCrop(), new RoundedCorners(PickerUtils.dip2px(context, 15)))
+                            .transform(new CenterCrop(), new RoundedCorners(PickerUtils.dip2px(context, 5)))
                             .into(imageView);
                 }
             };

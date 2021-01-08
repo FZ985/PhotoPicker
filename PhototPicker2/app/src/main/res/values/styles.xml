@@ -129,7 +129,6 @@
 
     <style name="bilibili_folder_list" parent="private_selection_folderlist_root_style">
         <item name="android:background">#00000000</item>
-        <item name="android:paddingLeft">16dp</item>
     </style>
 
 </resources>

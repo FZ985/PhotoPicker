@@ -68,6 +68,12 @@
                     android:layout_height="wrap_content"
                     android:text="自定义3" />
 
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/theme_custom4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="自定义4" />
+
             </RadioGroup>
 
             <CheckBox
