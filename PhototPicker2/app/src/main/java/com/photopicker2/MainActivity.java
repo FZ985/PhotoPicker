@@ -1,15 +1,21 @@
 package com.photopicker2;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -47,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         binding.chooseMoreRg.setOnCheckedChangeListener((group, checkedId) -> {
             binding.seekNums.setVisibility(checkedId == R.id.rb_more ? View.VISIBLE : View.GONE);
         });
+    }
+
+    public void btnclick(View view) {
     }
 
     public void open(View view) {
@@ -126,4 +135,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.home) {
+//            item.getGroupId();
+        }
+//                options_item_selected
+        return super.onOptionsItemSelected(item);
+    }
+
+    private Drawable getDrawable(String name, int color) {
+        ApplicationInfo appInfo = getApplicationInfo();
+        int resID = getResources().getIdentifier(name, "drawable", appInfo.packageName);
+        Drawable drawable = getResources().getDrawable(resID);
+        drawable.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        drawable.setBounds(drawable.getBounds());
+        return drawable;
+    }
 }

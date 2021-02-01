@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    task makeJar(type: Copy) {
+        //如果什么都不写就生成在默认的路径下，也就是下文的build/intermediates/aar_main_jar/release/下，build目录是在当前module的文件夹下，比如我的就是在activity下。
+        //删除
+        delete 'build/output/albumloader10.0.5.jar'
+        //打包好的jar包在这个目录，至少这个版本的module打包后是在aar_main_jar这个目录下
+        from('build/intermediates/aar_main_jar/release/')
+        //打包好的jar包移到这
+        into('build/libs/')
+        //将classes.jar放入build/libs/目录下
+        //include ,exclude参数来设置过滤
+        //（我们只关心classes.jar这个文件）
+        include('classes.jar')
+        //重命名
+        rename('classes.jar', 'albumloader10.0.5.jar')
+    }
+    //执行  gradlew makeJar
+    makeJar.dependsOn(build)
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+}

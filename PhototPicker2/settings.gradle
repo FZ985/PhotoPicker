@@ -1,3 +1,4 @@
+include ':loader'
 include ':MaterialPhotoPicker'
 include ':app'
 rootProject.name = "PhotoPicker2"

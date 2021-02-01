@@ -20,6 +20,18 @@
             android:orientation="vertical"
             android:padding="15dp">
 
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:id="@+id/test"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ddd"
+                android:onClick="btnclick"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
