@@ -10,12 +10,20 @@ import java.util.LinkedHashMap;
 public class PickerManager {
     private LinkedHashMap<Long, Item> selectMap = new LinkedHashMap<>();
     public static String defaultColor = "#6200EE";
+    public static String onlyImage = "onlyImage";
+    public static String onlyGif = "onlyGif";
+    public static String onlyVideo = "onlyVideo";
+    public static String all = "all";
+    public static String defSelectionType = onlyImage;
+    public String selectionTyp = defSelectionType;
     private boolean isCapture = false;
+    private boolean isCameraVideo = false;
     private int maxNumber = 1;
     private String themeColor = defaultColor;
     private String checkColor = defaultColor;
     private int spanCount = 3;
     private PickerCallback callback;
+
     private PickerManager() {
     }
 
@@ -84,6 +92,18 @@ public class PickerManager {
         return this;
     }
 
+    public String getSelectionType() {
+        if (selectionTyp == null || selectionTyp.equals("")) {
+            selectionTyp = defSelectionType;
+        }
+        return selectionTyp;
+    }
+
+    public PickerManager setSelectionType(String selectionTyp) {
+        this.selectionTyp = selectionTyp;
+        return this;
+    }
+
     public PickerCallback getCallback() {
         return baseCall;
     }
@@ -101,12 +121,23 @@ public class PickerManager {
         themeColor = defaultColor;
         checkColor = defaultColor;
         spanCount = 3;
+        selectionTyp = defSelectionType;
+        isCameraVideo = false;
+    }
+
+    public boolean isCameraVideo() {
+        return isCameraVideo;
+    }
+
+    public PickerManager setCameraVideo(boolean cameraVideo) {
+        isCameraVideo = cameraVideo;
+        return this;
     }
 
     private PickerCallback baseCall = new PickerCallback() {
         @Override
         public void onResult(String datas) {
-            if (callback != null){
+            if (callback != null) {
                 baseCall.onResult(datas);
             }
         }

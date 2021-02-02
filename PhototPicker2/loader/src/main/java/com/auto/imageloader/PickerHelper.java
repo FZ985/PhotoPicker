@@ -2,13 +2,17 @@ package com.auto.imageloader;
 
 import android.content.Context;
 
+import androidx.collection.ArraySet;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Description: 图库操作帮助类
@@ -30,7 +34,9 @@ public class PickerHelper {
                     .setMaxNumber(obj.optInt("maxCount", 1))
                     .setThemeColor(obj.optString("themeColor", PickerManager.defaultColor))
                     .setCheckColor(obj.optString("checkColor", PickerManager.defaultColor))
-                    .setSpanCount(Math.min(obj.optInt("spanCount", 3), 6));
+                    .setSelectionType(obj.optString("selectionType", PickerManager.onlyImage))
+                    .setSpanCount(Math.min(obj.optInt("spanCount", 3), 6))
+                    .setCameraVideo(obj.optBoolean("isCameraVideo", false));
         } catch (JSONException e) {
 
         }
@@ -102,4 +108,86 @@ public class PickerHelper {
     public PickerCallback getCallback() {
         return PickerManager.getInstance().getCallback();
     }
+
+    public enum MimeType {
+
+        // ============== images ==============
+        JPEG("image/jpeg", arraySetOf(
+                "jpg",
+                "jpeg"
+        )),
+        PNG("image/png", arraySetOf(
+                "png"
+        )),
+        GIF("image/gif", arraySetOf(
+                "gif"
+        )),
+        BMP("image/x-ms-bmp", arraySetOf(
+                "bmp"
+        )),
+        WEBP("image/webp", arraySetOf(
+                "webp"
+        )),
+
+        // ============== videos ==============
+        MPEG("video/mpeg", arraySetOf(
+                "mpeg",
+                "mpg"
+        )),
+        MP4("video/mp4", arraySetOf(
+                "mp4",
+                "m4v"
+        )),
+        QUICKTIME("video/quicktime", arraySetOf(
+                "mov"
+        )),
+        THREEGPP("video/3gpp", arraySetOf(
+                "3gp",
+                "3gpp"
+        )),
+        THREEGPP2("video/3gpp2", arraySetOf(
+                "3g2",
+                "3gpp2"
+        )),
+        MKV("video/x-matroska", arraySetOf(
+                "mkv"
+        )),
+        WEBM("video/webm", arraySetOf(
+                "webm"
+        )),
+        TS("video/mp2ts", arraySetOf(
+                "ts"
+        )),
+        AVI("video/avi", arraySetOf(
+                "avi"
+        ));
+
+        private final String mMimeTypeName;
+        private final Set<String> mExtensions;
+
+        MimeType(String mimeTypeName, Set<String> extensions) {
+            mMimeTypeName = mimeTypeName;
+            mExtensions = extensions;
+        }
+
+        private static Set<String> arraySetOf(String... suffixes) {
+            return new ArraySet<>(Arrays.asList(suffixes));
+        }
+
+        public static boolean isImage(String mimeType) {
+            if (mimeType == null) return false;
+            return mimeType.startsWith("image");
+        }
+
+        public static boolean isVideo(String mimeType) {
+            if (mimeType == null) return false;
+            return mimeType.startsWith("video");
+        }
+
+        public static boolean isGif(String mimeType) {
+            if (mimeType == null) return false;
+            return mimeType.equals(MimeType.GIF.toString());
+        }
+    }
+
 }

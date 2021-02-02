@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.text.format.DateUtils;
 
 import androidx.annotation.Nullable;
 
@@ -122,7 +123,17 @@ public class Item implements Parcelable {
 
     public boolean isImage() {
         if (mimeType == null) return false;
-        return mimeType.startsWith("image");
+        return PickerHelper.MimeType.isImage(mimeType);
+    }
+
+    public boolean isGif() {
+        if (mimeType == null) return false;
+        return PickerHelper.MimeType.isGif(mimeType);
+    }
+
+    public boolean isVideo() {
+        if (mimeType == null) return false;
+        return PickerHelper.MimeType.isVideo(mimeType);
     }
 
     public long getId() {
@@ -151,5 +162,9 @@ public class Item implements Parcelable {
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public String getVideoDuration() {
+        return DateUtils.formatElapsedTime(duration / 1000);
     }
 }

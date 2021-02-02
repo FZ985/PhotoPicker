@@ -3,6 +3,7 @@ package com.auto.imageloader.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -54,13 +55,19 @@ public class PreviewAdapter extends PagerAdapter {
         root.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
         TouchImageView touch = new TouchImageView(context);
         touch.setLayoutParams(new RelativeLayout.LayoutParams(-1, -1));
-        previewCallback.call(root, touch, position, datas.get(position));
         root.addView(touch);
+
+        ImageView video = new ImageView(context);
+        RelativeLayout.LayoutParams videoParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        videoParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        video.setLayoutParams(videoParams);
+        root.addView(video);
+        previewCallback.call(root, touch, video, position, datas.get(position));
         container.addView(root, new ViewGroup.LayoutParams(-1, -1));
         return root;
     }
 
     public interface PreviewCallback {
-        void call(RelativeLayout root, TouchImageView imageView, int position, Item item);
+        void call(RelativeLayout root, TouchImageView imageView, ImageView video, int position, Item item);
     }
 }

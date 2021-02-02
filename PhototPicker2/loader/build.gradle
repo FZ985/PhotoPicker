@@ -30,7 +30,7 @@ android {
     task makeJar(type: Copy) {
         //如果什么都不写就生成在默认的路径下，也就是下文的build/intermediates/aar_main_jar/release/下，build目录是在当前module的文件夹下，比如我的就是在activity下。
         //删除
-        delete 'build/output/albumloader10.0.5.jar'
+        delete 'build/output/albumloader10.1.2.jar'
         //打包好的jar包在这个目录，至少这个版本的module打包后是在aar_main_jar这个目录下
         from('build/intermediates/aar_main_jar/release/')
         //打包好的jar包移到这
@@ -40,7 +40,7 @@ android {
         //（我们只关心classes.jar这个文件）
         include('classes.jar')
         //重命名
-        rename('classes.jar', 'albumloader10.0.5.jar')
+        rename('classes.jar', 'albumloader10.1.2.jar')
     }
     //执行  gradlew makeJar
     makeJar.dependsOn(build)

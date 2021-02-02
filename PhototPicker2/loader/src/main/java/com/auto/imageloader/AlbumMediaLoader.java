@@ -38,9 +38,31 @@ public final class AlbumMediaLoader extends CursorLoader {
             MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
                     + " AND " + MediaStore.MediaColumns.SIZE + ">0";
 
-    private static String[] getSelectionArgsForSingleMediaType() {
-        return new String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE)};
+    private static String[] getSelectionArgsForSingleMediaType(int mediaType) {
+        return new String[]{String.valueOf(mediaType)};
     }
+
+    // === params for album ALL && MineType=="image/gif && showSingleMediaType ==true"
+    private static final String SELECTION_ALL_FOR_GIF =
+            MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
+                    + " AND "
+                    + MediaStore.MediaColumns.MIME_TYPE + "=?"
+                    + " AND " + MediaStore.MediaColumns.SIZE + ">0";
+
+    private static String[] getSelectionArgsForGifType() {
+        return new String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE), "image/gif"};
+    }
+    // =========================================================
+
+    private static final String SELECTION_ALL =
+            "(" + MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
+                    + " OR "
+                    + MediaStore.Files.FileColumns.MEDIA_TYPE + "=?)"
+                    + " AND " + MediaStore.MediaColumns.SIZE + ">0";
+    private static final String[] SELECTION_ALL_ARGS = {
+            String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE),
+            String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO),
+    };
 
     private AlbumMediaLoader(@NonNull Context context, @Nullable String selection, @Nullable String[] selectionArgs) {
         super(context, QUERY_URI, PROJECTION, selection, selectionArgs, ORDER_BY);
@@ -49,8 +71,19 @@ public final class AlbumMediaLoader extends CursorLoader {
     public static AlbumMediaLoader newInstance(Context context) {
         String selection;
         String[] selectionArgs;
-        selection = SELECTION_ALL_FOR_SINGLE_MEDIA_TYPE;
-        selectionArgs = getSelectionArgsForSingleMediaType();
+        if (PickerManager.getInstance().getSelectionType().equals(PickerManager.onlyImage)) {
+            selection = SELECTION_ALL_FOR_SINGLE_MEDIA_TYPE;
+            selectionArgs = getSelectionArgsForSingleMediaType(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE);
+        } else if (PickerManager.getInstance().getSelectionType().equals(PickerManager.onlyGif)) {
+            selection = SELECTION_ALL_FOR_GIF;
+            selectionArgs = getSelectionArgsForGifType();
+        } else if (PickerManager.getInstance().getSelectionType().equals(PickerManager.onlyVideo)) {
+            selection = SELECTION_ALL_FOR_SINGLE_MEDIA_TYPE;
+            selectionArgs = getSelectionArgsForSingleMediaType(MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO);
+        } else {
+            selection = SELECTION_ALL;
+            selectionArgs = SELECTION_ALL_ARGS;
+        }
         return new AlbumMediaLoader(context, selection, selectionArgs);
     }
 
