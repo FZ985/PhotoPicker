@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnclick(View view) {
+        Glide.with(this);
     }
 
     public void open(View view) {
