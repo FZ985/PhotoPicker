@@ -204,8 +204,10 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private static class PreviewAdapter extends FragmentStatePagerAdapter {
+        private int size;
         public PreviewAdapter(@NonNull FragmentManager fm) {
             super(fm, BEHAVIOR_SET_USER_VISIBLE_HINT);
+            size = SelectCheckIns.getInstance().getPreviewItems() == null ? 0 : SelectCheckIns.getInstance().getPreviewItems().size();
         }
 
         @NonNull
@@ -216,7 +218,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
 
         @Override
         public int getCount() {
-            return SelectCheckIns.getInstance().getPreviewItems() == null ? 0 : SelectCheckIns.getInstance().getPreviewItems().size();
+            return size;
         }
     }
 
